@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bulk or Cut?</title>
+  <link rel="icon" href="logo.jpg" type="image/png">
+
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="text-white bg-white">
+    
+    <header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
+        <nav class="container mx-auto flex items-center justify-between">
+          
+          <a href="index.html">
+            <img src="logo.jpg" alt="Logo"
+                 class="w-100 h-100 md:w-[150px] md:h-[100px]" />
+          </a>
+      
+         
+          <button id="main-btn" class="text-3xl md:hidden focus:outline-none">☰</button>
+      
+       
+          <div class="hidden md:flex items-center space-x-6 font-roboto font-semibold">
+            <a class="px-3 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+      
+            
+            <div class="relative group">
+              <button class="flex items-center px-3 hover:text-[#E60001]">
+                WORKOUT SPLITS <span class="ml-1 text-lg">▼</span>
+              </button>
+              <div class="absolute left-0 mt-1 hidden w-48 flex-col rounded bg-black/95 py-2 group-hover:flex">
+                <a href="./struct.html" class="px-4 py-1 hover:text-[#E60001]">Split Structuring Basics</a>
+                <a href="./3day.html" class="px-4 py-1 hover:text-[#E60001]">Full-Body (3-Day)</a>
+                <a href="./4day.html" class="px-4 py-1 hover:text-[#E60001]">Upper-Lower (4-Day)</a>
+                <a href="./6day.html" class="px-4 py-1 hover:text-[#E60001]">PPL (6-Day)</a>
+              </div>
+            </div>
+      
+            
+            <div class="relative group">
+              <button class="flex items-center px-3 hover:text-[#E60001]">
+                GYM INFO <span class="ml-1 text-lg">▼</span>
+              </button>
+              <div class="absolute left-0 mt-1 hidden w-44 flex-col rounded bg-black/95 py-2 group-hover:flex">
+                <a href="./fundements.html" class="px-4 py-1 hover:text-[#E60001]">Workout Fundamentals</a>
+                <a href="./bulk.html" class="px-4 py-1 hover:text-[#E60001]">Bulk or Cut?</a>
+                <a href="./rep.html" class="px-4 py-1 hover:text-[#E60001]">Rep Ranges</a>
+                <a href="./creatine.html" class="px-4 py-1 hover:text-[#E60001]">Why Creatine?</a>
+                <a href="./rest.html" class="px-4 py-1 hover:text-[#E60001]">Rest & Recovery</a>
+              </div>
+            </div>
+      
+            <a class="px-3 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+            <a class="px-3 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+      
+           
+          </div>
+        </nav>
+      
+        
+        <div id="main-menu" class="hidden flex-col md:hidden px-4 pb-4">
+          <a class="py-2 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+      
+          
+          <button data-target="splits" class="flex items-center py-2 hover:text-[#E60001]">
+            WORKOUT SPLITS <span class="ml-1">▼</span>
+          </button>
+          <div id="splits" class="hidden flex-col pl-4">
+            <a class="py-1 hover:text-[#E60001]" href="./struct.html">Split Structuring Basics</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./3day.html">Full-Body (3-Day)</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./4day.html">Upper-Lower (4-Day)</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./6day.html">PPL (6-Day)</a>
+          </div>
+      
+         
+          <button data-target="info" class="flex items-center py-2 hover:text-[#E60001]">
+            GYM INFO <span class="ml-1">▼</span>
+          </button>
+          <div id="info" class="hidden flex-col pl-4">
+            <a class="py-1 hover:text-[#E60001]" href="/fundements.html"  >Workout Fundamentals</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./bulk.html">Bulk or Cut</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./rep.html">Rep Ranges</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./creatine.html">Why Creatine?</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./rest.html">Rest & Recovery</a>
+          </div>
+      
+          <a class="py-2 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+          <a class="py-2 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+      <br>
+      <br>
+          
+          
+        </div>
+      
+       
+        <script>
+          document.getElementById('main-btn').onclick = () =>
+            document.getElementById('main-menu').classList.toggle('hidden');
+          document.querySelectorAll('[data-target]').forEach(btn => {
+            btn.onclick = () =>
+              document.getElementById(btn.dataset.target).classList.toggle('hidden');
+          });
+        </script>
+      </header>
+
+    <script>
+        
+        document.getElementById('main-btn').onclick = () => {
+          document.getElementById('main-menu').classList.toggle('hidden');
+        };
+    
+       
+        document.querySelectorAll('[data-target]').forEach(button => {
+          button.onclick = () => {
+            const target = document.getElementById(button.dataset.target);
+            target.classList.toggle('hidden');
+          };
+        });
+      </script>
+<div class="flex justify-center bg-[#E60001] py-3">
+    <div class="inline-flex rounded-xl overflow-hidden shadow-lg">
+      <button data-lang="en" class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base">English</button>
+      <button data-lang="ru" class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base border-l border-white/20">Roman&nbsp;Urdu</button>
+      <button data-lang="ur" class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base border-l border-white/20">اردو</button>
+    </div>
+  </div>
+
+  
+  <section class="bg-[#E60001] text-white py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 id="sec1-heading" class="text-3xl sm:text-4xl font-bold mb-6"></h2>
+      <p id="sec1-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+
+  <section class="bg-white text-black py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto">
+      <h2 id="sec2-heading" class="text-3xl sm:text-4xl font-bold text-center mb-8"></h2>
+      <p id="sec2-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+  
+  <section class="bg-[#E60001] text-white py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 id="sec3-heading" class="text-3xl sm:text-4xl font-bold mb-6"></h2>
+      <p id="sec3-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+  
+  <section class="bg-white text-black py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto">
+      <h2 id="sec4-heading" class="text-3xl sm:text-4xl font-bold text-center mb-8"></h2>
+      <p id="sec4-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+ 
+  <script>
+    const t = {
+      en: {
+        "sec1-heading": "Why Rep Ranges Matter",
+        "sec1-text": `Rep ranges are a powerful way to track strength progression and, by extension, muscle growth. <strong>You will grow the same amount if you push a set to failure with proper form anywhere from 5&nbsp;to&nbsp;30 reps.</strong> The last 3–4 reps—the grind to failure—deliver the biggest growth signal.`,
+        
+        "sec2-heading": "Using Rep Ranges for Progress",
+        "sec2-text": `Pick a range, say 6–8 reps. Choose a weight you can hit for 6 clean reps. Next workout aim for 7, then 8. As soon as you reach the top of the range, add weight and drop back to 6 reps. Keep rep quality strict—no sloppy reps.`,
+
+        "sec3-heading": "What Works Best for Me",
+        "sec3-text": `I’ve tried everything from 20-rep burners to 3-rep maxes. <br />4–6 and 6–8 give me the best mix of low fatigue and clear progress. Heavy weight feels cooler, and you skip the pointless first 26 reps of a 30-rep set.`,
+
+        "sec4-heading": "Don’t Stress the Outliers",
+        "sec4-text": `If you nail only 3 reps one day or grind out 33 on another, the set still counts. Effort builds muscle; numbers just guide us. Keep form tight, avoid ego lifting, and you’ll grow.`
+      },
+
+      ru: {
+        "sec1-heading": "Rep Ranges Ki Ahmiyat",
+        "sec1-text": `Rep ranges aapki strength progression ko track karne ka zabardast tareeqa hain, aur yahi muscle growth ka signal hota hai. <strong>Agar aap 5 se 30 reps tak kisi bhi set ko sahi form mein failure tak le jayein, aap barabar grow karenge.</strong> Aakhri 3-4 reps—jo failure par le jati hain—sab se zyada growth ka stimulus deti hain.`,
+
+        "sec2-heading": "Rep Ranges Ka Sahi Istemaal",
+        "sec2-text": `Ek range choose karo, jaise 6–8 reps. Aisa weight uthao jo aap sirf 6 achhi reps kar sako. Agli workout main 7, phir 8 reps ka nishana. Jaise hi 8 touch karo, weight badhao aur phir 6 reps se shuru. Rep quality standard rakho—6–8 saaf reps, cheating nahin.`,
+
+        "sec3-heading": "Mera Tajurba",
+        "sec3-text": `20-rep sets se le kar 3-rep max tak sab try karne ke baad mujhe 4–6 aur 6–8 sab se behtar lagte hain. Heavy uthanay se fatigue kam hoti hai aur progress clear nazar aati hai. 30-rep set ke pehle 26 reps sirf failure tak pohanchne ke liye hoti hain—kyun na seedha heavy jao.`,
+
+        "sec4-heading": "Outlier Sets Ki Fikr Na Karo",
+        "sec4-text": `Kabhi 3 reps milen ya 33, set phir bhi kaam karega. Effort muscle banata hai; numbers sirf direction dete hain. Form tight rakho, ego lifting se bacho, aur grow karo.`
+      },
+
+      ur: {
+        "sec1-heading": "ریپ رینجز کی اہمیت",
+        "sec1-text": `ریپ رینجز آپ کی طاقت میں اضافہ جانچنے کا بہترین طریقہ ہیں، اور یہی مسل کی بڑھوتری کا اشارہ ہے۔ <strong>اگر آپ 5 سے 30 ریپس کے درمیان کسی بھی سیٹ کو صحیح فارم کے ساتھ فیلئر تک لے جائیں تو آپ برابر ترقی کریں گے۔</strong> آخری 3–4 ریپس—جو فیلئر تک لے جاتی ہیں—سب سے زیادہ نمو کا سگنل دیتی ہیں۔`,
+
+        "sec2-heading": "ریپ رینجز کا صحیح استعمال",
+        "sec2-text": `ایک رینج چُنیں، مثلاً 6–8 ریپس۔ ایسا وزن لیں جس سے آپ صرف 6 معیاری ریپس کر سکیں۔ اگلی بار 7 پھر 8 ریپس کا ہدف رکھیں۔ جونہی 8 ریپس ہو جائیں، وزن بڑھا کر پھر 6 ریپس سے آغاز کریں۔ ریپ کا معیار برقرار رکھیں—6–8 صاف ریپس، کوئی چیٹنگ نہیں۔`,
+
+        "sec3-heading": "میرا تجربہ",
+        "sec3-text": `20 ریپ سیٹوں سے لے کر 3 ریپ میکس تک سب آزمانے کے بعد، مجھے 4–6 اور 6–8 ریپس سب سے بہتر لگتی ہیں۔ بھاری وزن سے تھکن کم ہوتی ہے اور ترقی صاف دکھائی دیتی ہے۔ 30 ریپ سیٹ کی پہلی 26 ریپس صرف فیلئر تک پہنچنے کے لیے ہوتی ہیں—تو سیدھا بھاری وزن کیوں نہ اُٹھائیں۔`,
+
+        "sec4-heading": "آؤٹ لائر سیٹس کی فکر نہ کریں",
+        "sec4-text": `اگر کبھی 3 ریپس ہوں یا 33، سیٹ پھر بھی فائدہ دے گا۔ کوشش مسل بناتی ہے؛ اعداد صرف رہنمائی کرتے ہیں۔ فارم درست رکھیں، ایگو لفٹنگ سے بچیں، اور ترقی کریں۔`
+      }
+    };
+
+    function applyLang(lang) {
+      Object.keys(t[lang]).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = t[lang][id];  
+      });
+    }
+
+    
+    let currentLang = "en";
+    applyLang(currentLang);
+
+    document.querySelectorAll(".lang-btn").forEach(btn =>
+      btn.addEventListener("click", () => {
+        currentLang = btn.dataset.lang;
+        applyLang(currentLang);
+      })
+    );
+  </script>
+
+</body>
+</html>

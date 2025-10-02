@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PPL Split</title>
+  <link rel="icon" href="logo.jpg" type="image/png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans text-white">
+
+  
+  <header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
+    <nav class="container mx-auto flex items-center justify-between">
+      
+      
+      <a href="index.html">
+        <img src="logo.jpg" alt="Logo"
+             class="w-100 h-100 md:w-[150px] md:h-[100px]" />
+      </a>
+  
+      
+      <button id="main-btn" class="text-3xl md:hidden focus:outline-none">☰</button>
+  
+      <!-- DESKTOP menu -->
+      <div class="hidden md:flex items-center space-x-6 font-roboto font-semibold">
+        <a class="px-3 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+  
+        <!-- Workout Splits ▼ -->
+        <div class="relative group">
+          <button class="flex items-center px-3 hover:text-[#E60001]">
+            WORKOUT SPLITS <span class="ml-1 text-lg">▼</span>
+          </button>
+          <div class="absolute left-0 mt-1 hidden w-48 flex-col rounded bg-black/95 py-2 group-hover:flex">
+            <a href="./struct.html" class="px-4 py-1 hover:text-[#E60001]">Split Structuring Basics</a>
+            <a href="./3day.html" class="px-4 py-1 hover:text-[#E60001]">Full-Body (3-Day)</a>
+            <a href="./4day.html" class="px-4 py-1 hover:text-[#E60001]">Upper-Lower (4-Day)</a>
+            <a href="./6day.html" class="px-4 py-1 hover:text-[#E60001]">PPL (6-Day)</a>
+          </div>
+        </div>
+  
+        <!-- Gym Info ▼ -->
+        <div class="relative group">
+          <button class="flex items-center px-3 hover:text-[#E60001]">
+            GYM INFO <span class="ml-1 text-lg">▼</span>
+          </button>
+          <div class="absolute left-0 mt-1 hidden w-44 flex-col rounded bg-black/95 py-2 group-hover:flex">
+            <a href="./fundements.html" class="px-4 py-1 hover:text-[#E60001]">Workout Fundamentals</a>
+            <a href="./bulk.html" class="px-4 py-1 hover:text-[#E60001]">Bulk or Cut?</a>
+            <a href="./rep.html" class="px-4 py-1 hover:text-[#E60001]">Rep Ranges</a>
+            <a href="./creatine.html" class="px-4 py-1 hover:text-[#E60001]">Why Creatine?</a>
+            <a href="./rest.html" class="px-4 py-1 hover:text-[#E60001]">Rest & Recovery</a>
+          </div>
+        </div>
+  
+        <a class="px-3 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+        <a class="px-3 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+  
+        
+      </div>
+    </nav>
+  
+    <!-- MOBILE menu -->
+    <div id="main-menu" class="hidden flex-col md:hidden px-4 pb-4">
+      <a class="py-2 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+  
+      <!-- Splits submenu -->
+      <button data-target="splits" class="flex items-center py-2 hover:text-[#E60001]">
+        WORKOUT SPLITS <span class="ml-1">▼</span>
+      </button>
+      <div id="splits" class="hidden flex-col pl-4">
+        <a class="py-1 hover:text-[#E60001]" href="./struct.html">Split Structuring Basics</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./3day.html">Full-Body (3-Day)</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./4day.html">Upper-Lower (4-Day)</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./6day.html">PPL (6-Day)</a>
+      </div>
+  
+      <!-- Gym submenu -->
+      <button data-target="info" class="flex items-center py-2 hover:text-[#E60001]">
+        GYM INFO <span class="ml-1">▼</span>
+      </button>
+      <div id="info" class="hidden flex-col pl-4">
+        <a class="py-1 hover:text-[#E60001]" href="/fundements.html"  >Workout Fundamentals</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./bulk.html">Bulk or Cut</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./rep.html">Rep Ranges</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./creatine.html">Why Creatine?</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./rest.html">Rest & Recovery</a>
+      </div>
+  
+      <a class="py-2 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+      <a class="py-2 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+  <br>
+  <br>
+      
+    </div>
+  
+    <!-- Toggle script -->
+    <script>
+      document.getElementById('main-btn').onclick = () =>
+        document.getElementById('main-menu').classList.toggle('hidden');
+      document.querySelectorAll('[data-target]').forEach(btn => {
+        btn.onclick = () =>
+          document.getElementById(btn.dataset.target).classList.toggle('hidden');
+      });
+    </script>
+  </header>
+
+  <!-- === INTRO === -->
+  <section class="bg-[#E60001] text-white py-14 px-4 sm:px-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Push Pull Legs (PPL) Weekly Plan</h2>
+      <p class="text-base sm:text-lg leading-relaxed">
+        This PPL split hits every muscle twice a week with a rest day for recovery. Push, pull, and legs are cycled for maximum frequency. Train every set to failure with strict form.
+      </p>
+    </div>
+  </section>
+
+  <!-- === DAY 1: PUSH === -->
+  <section class="bg-white text-black py-14 px-4 sm:px-10">
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold mb-4">Day 1 – Push (Chest, Shoulders, Triceps)</h3>
+      <ul class="list-disc ml-5 space-y-2">
+        <li><a href="#">Incline Chest Press (Dumbbell, Barbell, or Smith)</a> – 2 sets to failure</li>
+        <li><a href="#">Chest Fly (Cable or Machine)</a> – 2 sets to failure</li>
+        <li><a href="#">Tricep Overhead Extension</a> – 2 sets to failure</li>
+        <li><a href="#">Tricep Pushdown</a> – 2 sets to failure</li>
+        <li><a href="#">Cable Lateral Raises</a> – 2 sets to failure</li>
+        <li><a href="#">Shoulder Press</a> – 2 sets to failure</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- === DAY 2: PULL === -->
+  <section class="bg-[#E60001] text-white py-14 px-4 sm:px-10">
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold mb-4">Day 2 – Pull (Back, Biceps, Rear Delts)</h3>
+      <ul class="list-disc ml-5 space-y-2">
+        <li><a href="#">Lat Pulldowns</a> – 2 sets to failure</li>
+        <li><a href="#">Wide Grip Rows (Smith, Cable, or Barbell)</a> – 2 sets to failure</li>
+        <li><a href="#">Close Grip Rows (Dumbbell or Cable)</a> – 2 sets to failure</li>
+        <li><a href="#">Rear Delt Fly or Face Pulls</a> – 2 sets to failure</li>
+        <li><a href="#">Cable Bicep Curls</a> – 2 sets to failure</li>
+        <li><a href="#">Preacher Curls</a> – 2 sets to failure</li>
+        <li><a href="#">Shrugs</a> – 1 set to failure</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- === DAY 3: LEGS === -->
+  <section class="bg-white text-black py-14 px-4 sm:px-10">
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold mb-4">Day 3 – Legs</h3>
+      <ul class="list-disc ml-5 space-y-2">
+        <li><a href="#">Leg Press</a> – 2 sets to failure</li>
+        <li><a href="#">Leg Extensions</a> – 2 sets to failure</li>
+        <li><a href="#">Hamstring Curls</a> – 2 sets to failure</li>
+        <li><a href="#">Calf Raises</a> – 2 sets to failure</li>
+        <li><a href="#">Hip Thrusts</a> – 2 sets to failure</li>
+        <li><a href="#">Cable Crunches</a> – 2 sets to failure</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- === DAY 4: PUSH === -->
+  <section class="bg-[#E60001] text-white py-14 px-4 sm:px-10">
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold mb-4">Day 4 – Push (Chest, Shoulders, Triceps)</h3>
+      <ul class="list-disc ml-5 space-y-2">
+        <li><a href="#">Chest Press (Machine or Flat Bench)</a> – 2 sets to failure</li>
+        <li><a href="#">Chest Fly (Cable or Machine)</a> – 2 sets to failure</li>
+        <li><a href="#">Shoulder Press (Dumbbell, Machine, Smith, or Barbell)</a> – 2 sets to failure</li>
+        <li><a href="#">Lateral Raises</a> – 2 sets to failure</li>
+        <li><a href="#">Dipping Movement</a> – 2 sets to failure</li>
+        <li><a href="#">Unilateral Tricep Pushdowns</a> – 2 sets to failure</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- === DAY 5: PULL === -->
+  <section class="bg-white text-black py-14 px-4 sm:px-10">
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold mb-4">Day 5 – Pull (Back, Biceps, Rear Delts)</h3>
+      <ul class="list-disc ml-5 space-y-2">
+        <li><a href="#">Wide Grip Rows (Smith, Barbell, or Cable)</a> – 2 sets to failure</li>
+        <li><a href="#">Vertical Lat Pulldown or Pull-Ups</a> – 2 sets to failure</li>
+        <li><a href="#">Bicep Curls (Cable, Barbell, or Dumbbell)</a> – 2 sets to failure</li>
+        <li><a href="#">Preacher Curls</a> – 2 sets to failure</li>
+        <li><a href="#">Hammer Curls (Cable or Dumbbell)</a> – 2 sets to failure</li>
+        <li><a href="#">Face Pulls or Rear Delt Flies</a> – 2 sets to failure</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- === DAY 6: LEGS === -->
+  <section class="bg-[#E60001] text-white py-14 px-4 sm:px-10">
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold mb-4">Day 6 – Legs</h3>
+      <ul class="list-disc ml-5 space-y-2">
+        <li><a href="#">Barbell or Smith Machine Squats</a> – 2 sets to failure</li>
+        <li><a href="#">Romanian Deadlifts (RDLs)</a> – 2 sets to failure</li>
+        <li><a href="#">Hamstring Curls</a> – 2 sets to failure</li>
+        <li><a href="#">Leg Extensions</a> – 2 sets to failure</li>
+        <li><a href="#">Calf Raises</a> – 2 sets to failure</li>
+        <li><a href="#">Cable Crunches</a> – 2 sets to failure</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- === DAY 7: REST === -->
+  <section class="bg-white text-black py-14 px-4 sm:px-10 text-center">
+    <h3 class="text-2xl font-bold">Day 7 – Rest & Recovery</h3>
+    <p class="text-base sm:text-lg mt-2">
+      Full rest day. Focus on sleep, eating well, and letting your muscles recover before restarting the cycle.
+    </p>
+  </section>
+
+</body>
+</html>

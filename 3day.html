@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>3-Day Split</title>
+  <link rel="icon" href="logo.jpg" type="image/png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans text-white">
+
+
+  <header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
+    <nav class="container mx-auto flex items-center justify-between">
+      
+      
+      <a href="index.html">
+        <img src="logo.jpg" alt="Logo"
+             class="w-100 h-100 md:w-[150px] md:h-[100px]" />
+      </a>
+  
+      
+      <button id="main-btn" class="text-3xl md:hidden focus:outline-none">☰</button>
+  
+     
+      <div class="hidden md:flex items-center space-x-6 font-roboto font-semibold">
+        <a class="px-3 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+  
+        
+        <div class="relative group">
+          <button class="flex items-center px-3 hover:text-[#E60001]">
+            WORKOUT SPLITS <span class="ml-1 text-lg">▼</span>
+          </button>
+          <div class="absolute left-0 mt-1 hidden w-48 flex-col rounded bg-black/95 py-2 group-hover:flex">
+            <a href="./struct.html" class="px-4 py-1 hover:text-[#E60001]">Split Structuring Basics</a>
+            <a href="./3day.html" class="px-4 py-1 hover:text-[#E60001]">Full-Body (3-Day)</a>
+            <a href="./4day.html" class="px-4 py-1 hover:text-[#E60001]">Upper-Lower (4-Day)</a>
+            <a href="./6day.html" class="px-4 py-1 hover:text-[#E60001]">PPL (6-Day)</a>
+          </div>
+        </div>
+  
+        
+        <div class="relative group">
+          <button class="flex items-center px-3 hover:text-[#E60001]">
+            GYM INFO <span class="ml-1 text-lg">▼</span>
+          </button>
+          <div class="absolute left-0 mt-1 hidden w-44 flex-col rounded bg-black/95 py-2 group-hover:flex">
+            <a href="./fundements.html" class="px-4 py-1 hover:text-[#E60001]">Workout Fundamentals</a>
+            <a href="./bulk.html" class="px-4 py-1 hover:text-[#E60001]">Bulk or Cut?</a>
+            <a href="./rep.html" class="px-4 py-1 hover:text-[#E60001]">Rep Ranges</a>
+            <a href="./creatine.html" class="px-4 py-1 hover:text-[#E60001]">Why Creatine?</a>
+            <a href="./rest.html" class="px-4 py-1 hover:text-[#E60001]">Rest & Recovery</a>
+          </div>
+        </div>
+  
+        <a class="px-3 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+        <a class="px-3 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+  
+       
+      </div>
+    </nav>
+  
+    <!-- MOBILE menu -->
+    <div id="main-menu" class="hidden flex-col md:hidden px-4 pb-4">
+      <a class="py-2 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+  
+      <!-- Splits submenu -->
+      <button data-target="splits" class="flex items-center py-2 hover:text-[#E60001]">
+        WORKOUT SPLITS <span class="ml-1">▼</span>
+      </button>
+      <div id="splits" class="hidden flex-col pl-4">
+        <a class="py-1 hover:text-[#E60001]" href="./struct.html">Split Structuring Basics</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./3day.html">Full-Body (3-Day)</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./4day.html">Upper-Lower (4-Day)</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./6day.html">PPL (6-Day)</a>
+      </div>
+  
+      <!-- Gym submenu -->
+      <button data-target="info" class="flex items-center py-2 hover:text-[#E60001]">
+        GYM INFO <span class="ml-1">▼</span>
+      </button>
+      <div id="info" class="hidden flex-col pl-4">
+        <a class="py-1 hover:text-[#E60001]" href="/fundements.html"  >Workout Fundamentals</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./bulk.html">Bulk or Cut</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./rep.html">Rep Ranges</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./creatine.html">Why Creatine?</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./rest.html">Rest & Recovery</a>
+      </div>
+  
+      <a class="py-2 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+      <a class="py-2 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+  <br>
+  <br>
+      
+    </div>
+  
+    <!-- Toggle script -->
+    <script>
+      document.getElementById('main-btn').onclick = () =>
+        document.getElementById('main-menu').classList.toggle('hidden');
+      document.querySelectorAll('[data-target]').forEach(btn => {
+        btn.onclick = () =>
+          document.getElementById(btn.dataset.target).classList.toggle('hidden');
+      });
+    </script>
+  </header>
+ 
+
+ 
+
+  <!-- === SECTION 1: INTRO === -->
+  <section class="bg-[#E60001] text-white py-14 px-4 sm:px-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 id="intro-heading" class="text-3xl sm:text-4xl font-bold mb-4"></h2>
+      <p id="intro-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+  <!-- === DAY 1 === -->
+  <section class="bg-white text-black py-14 px-4 sm:px-10">
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold mb-4" id="day1-heading"></h3>
+      <ul id="day1-list" class="list-disc ml-5 space-y-2"></ul>
+    </div>
+  </section>
+
+  <!-- === DAY 2 === -->
+  <section class="bg-[#E60001] text-white py-14 px-4 sm:px-10 text-center">
+    <h3 id="day2-heading" class="text-2xl font-bold"></h3>
+    <p id="day2-text" class="text-base sm:text-lg mt-2"></p>
+  </section>
+
+  <!-- === DAY 3 === -->
+  <section class="bg-white text-black py-14 px-4 sm:px-10">
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold mb-4" id="day3-heading"></h3>
+      <ul id="day3-list" class="list-disc ml-5 space-y-2"></ul>
+    </div>
+  </section>
+
+  <!-- === DAY 4 === -->
+  <section class="bg-[#E60001] text-white py-14 px-4 sm:px-10 text-center">
+    <h3 id="day4-heading" class="text-2xl font-bold"></h3>
+    <p id="day4-text" class="text-base sm:text-lg mt-2"></p>
+  </section>
+
+  <!-- === DAY 5 === -->
+  <section class="bg-white text-black py-14 px-4 sm:px-10">
+    <div class="max-w-3xl mx-auto">
+      <h3 class="text-2xl font-bold mb-4" id="day5-heading"></h3>
+      <ul id="day5-list" class="list-disc ml-5 space-y-2"></ul>
+    </div>
+  </section>
+
+  <!-- === DAYS 6–7 === -->
+  <section class="bg-[#E60001] text-white py-14 px-4 sm:px-10 text-center">
+    <h3 id="day6-heading" class="text-2xl font-bold"></h3>
+    <p id="day6-text" class="text-base sm:text-lg mt-2"></p>
+  </section>
+
+  <!-- === SCRIPT === -->
+  <script>
+    const data = {
+      en: {
+        "intro-heading": "3-Day Full Body Split",
+        "intro-text": "This 3-day program gives you full-body frequency while letting you recover. Each workout hits multiple muscle groups. Go heavy, go to failure, and track your lifts. Rest days are just as important.",
+        "day1-heading": "Day 1 – Full Body A",
+        "day1-list": [
+          `<a href="#">Barbell Squats</a> – 2 sets heavy to failure`,
+          `<a href="#">Incline Chest Press (Dumbbell Preferred)</a> – 2 sets to failure`,
+          `<a href="#">Vertical Back Movement (Pull-Up or Pulldown)</a> – 2 sets to failure`,
+          `<a href="#">Any Bicep Curl (Cable Preferred)</a> – 2 sets to failure`,
+          `<a href="#">Tricep Overhead Extension</a> – 2 sets to failure`
+        ],
+        "day2-heading": "Day 2 – Rest",
+        "day2-text": "Recover fully before going again. Sleep, eat, hydrate.",
+        "day3-heading": "Day 3 – Full Body B",
+        "day3-list": [
+          `<a href="#">Incline Bench Press</a> – 2 sets to failure`,
+          `<a href="#">Lateral Raises (Cable Preferred)</a> – 2 sets to failure`,
+          `<a href="#">Romanian Deadlifts (RDLs)</a> – 2 sets to failure`,
+          `<a href="#">Tricep Pushdown</a> – 2 sets to failure`,
+          `<a href="#">Bicep Curls</a> – 2 sets to failure`
+        ],
+        "day4-heading": "Day 4 – Rest",
+        "day4-text": "Light activity or walking is okay, but avoid lifting.",
+        "day5-heading": "Day 5 – Full Body C",
+        "day5-list": [
+          `<a href="#">Back Rowing Movement (Barbell or Smith Machine)</a> – 2 sets to failure`,
+          `<a href="#">Rear Delt Fly or Face Pull</a> – 2 sets to failure`,
+          `<a href="#">Leg Press</a> – 2 sets to failure`,
+          `<a href="#">Calf Raises</a> – 2 sets to failure`
+        ],
+        "day6-heading": "Days 6–7 – Rest & Recovery",
+        "day6-text": "You’ve hit the body hard. Prioritize sleep, food, and rest before repeating the cycle."
+      }
+      
+    };
+
+    function loadText(lang) {
+      const t = data[lang];
+      for (const id in t) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (Array.isArray(t[id])) {
+          el.innerHTML = t[id].map(item => `<li>${item}</li>`).join("");
+        } else {
+          el.innerHTML = t[id];
+        }
+      }
+    }
+
+    let currentLang = "en";
+    loadText(currentLang);
+
+    document.querySelectorAll(".lang-btn").forEach(btn =>
+      btn.addEventListener("click", () => {
+        currentLang = btn.dataset.lang;
+        loadText(currentLang);
+      })
+    );
+  </script>
+</body>
+</html>

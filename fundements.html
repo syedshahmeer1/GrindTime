@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Workout Fundamentals</title>
+  <link rel="icon" href="logo.jpg" type="image/png">
+
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="text-white bg-white">
+ 
+    <header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
+        <nav class="container mx-auto flex items-center justify-between">
+          
+        
+          <a href="index.html">
+            <img src="logo.jpg" alt="Logo"
+                 class="w-100 h-100 md:w-[150px] md:h-[100px]" />
+          </a>
+      
+        
+          <button id="main-btn" class="text-3xl md:hidden focus:outline-none">☰</button>
+      
+          <div class="hidden md:flex items-center space-x-6 font-roboto font-semibold">
+            <a class="px-3 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+      
+        
+            <div class="relative group">
+              <button class="flex items-center px-3 hover:text-[#E60001]">
+                WORKOUT SPLITS <span class="ml-1 text-lg">▼</span>
+              </button>
+              <div class="absolute left-0 mt-1 hidden w-48 flex-col rounded bg-black/95 py-2 group-hover:flex">
+                <a href="./struct.html" class="px-4 py-1 hover:text-[#E60001]">Split Structuring Basics</a>
+                <a href="./3day.html" class="px-4 py-1 hover:text-[#E60001]">Full-Body (3-Day)</a>
+                <a href="./4day.html" class="px-4 py-1 hover:text-[#E60001]">Upper-Lower (4-Day)</a>
+                <a href="./6day.html" class="px-4 py-1 hover:text-[#E60001]">PPL (6-Day)</a>
+              </div>
+            </div>
+      
+        
+            <div class="relative group">
+              <button class="flex items-center px-3 hover:text-[#E60001]">
+                GYM INFO <span class="ml-1 text-lg">▼</span>
+              </button>
+              <div class="absolute left-0 mt-1 hidden w-44 flex-col rounded bg-black/95 py-2 group-hover:flex">
+                <a href="./fundements.html" class="px-4 py-1 hover:text-[#E60001]">Workout Fundamentals</a>
+                <a href="./bulk.html" class="px-4 py-1 hover:text-[#E60001]">Bulk or Cut?</a>
+                <a href="./rep.html" class="px-4 py-1 hover:text-[#E60001]">Rep Ranges</a>
+                <a href="./creatine.html" class="px-4 py-1 hover:text-[#E60001]">Why Creatine?</a>
+                <a href="./rest.html" class="px-4 py-1 hover:text-[#E60001]">Rest & Recovery</a>
+              </div>
+            </div>
+      
+            <a class="px-3 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+            <a class="px-3 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+      
+          
+          </div>
+        </nav>
+      
+        <div id="main-menu" class="hidden flex-col md:hidden px-4 pb-4">
+          <a class="py-2 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+      
+          
+          <button data-target="splits" class="flex items-center py-2 hover:text-[#E60001]">
+            WORKOUT SPLITS <span class="ml-1">▼</span>
+          </button>
+          <div id="splits" class="hidden flex-col pl-4">
+            <a class="py-1 hover:text-[#E60001]" href="./struct.html">Split Structuring Basics</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./3day.html">Full-Body (3-Day)</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./4day.html">Upper-Lower (4-Day)</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./6day.html">PPL (6-Day)</a>
+          </div>
+      
+          <button data-target="info" class="flex items-center py-2 hover:text-[#E60001]">
+            GYM INFO <span class="ml-1">▼</span>
+          </button>
+          <div id="info" class="hidden flex-col pl-4">
+            <a class="py-1 hover:text-[#E60001]" href="/fundements.html"  >Workout Fundamentals</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./bulk.html">Bulk or Cut</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./rep.html">Rep Ranges</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./creatine.html">Why Creatine?</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./rest.html">Rest & Recovery</a>
+          </div>
+      
+          <a class="py-2 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+          <a class="py-2 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+      <br>
+      <br>
+        
+        </div>
+      
+        <!-- Toggle script -->
+        <script>
+          document.getElementById('main-btn').onclick = () =>
+            document.getElementById('main-menu').classList.toggle('hidden');
+          document.querySelectorAll('[data-target]').forEach(btn => {
+            btn.onclick = () =>
+              document.getElementById(btn.dataset.target).classList.toggle('hidden');
+          });
+        </script>
+      </header>
+    <script>
+        // Main mobile menu toggle
+        document.getElementById('main-btn').onclick = () => {
+          document.getElementById('main-menu').classList.toggle('hidden');
+        };
+    
+        // Submenu toggles for mobile
+        document.querySelectorAll('[data-target]').forEach(button => {
+          button.onclick = () => {
+            const target = document.getElementById(button.dataset.target);
+            target.classList.toggle('hidden');
+          };
+        });
+      </script>
+
+<section class="bg-[#E60001] py-16 sm:py-24 px-4 sm:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 id="typewriter"
+          class="text-4xl sm:text-5xl md:text-6xl font-bold text-white">
+      </h1>
+    </div>
+  </section>
+
+ 
+  <div class="flex justify-center -mt-6 sm:-mt-8">
+    <div class="inline-flex rounded-xl overflow-hidden shadow-lg">
+      <button data-lang="en"
+              class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base">
+        English
+      </button>
+      <button data-lang="ru"
+              class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base border-l border-white/20">
+        Roman&nbsp;Urdu
+      </button>
+      <button data-lang="ur"
+              class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base border-l border-white/20">
+        اردو
+      </button>
+    </div>
+  </div>
+
+  <section class="bg-white text-black py-12 sm:py-20 px-4 sm:px-8">
+    <div class="max-w-3xl mx-auto">
+      <p id="philosophy-text"
+         class="text-base sm:text-lg md:text-xl leading-relaxed">
+        <!-- English loads by default; script will swap this text -->
+        My philosophy is simple: if you give your absolute best in the gym, train your sets to failure, and keep pushing harder — you will grow. No fancy technique or hack is a replacement for effort. Everything I’ve learned — from optimizing workouts to tracking nutrition — has come through 1.5 years of obsession with improving. I hit intermediate milestones in 6–8 months that usually take people years, not because I had a secret, but because I tracked everything, stayed consistent, and never stopped learning. My goal now is to pass that to you — to share the mindset, methods, and momentum that helped me. At the end of the day, this gym life is meant to be fun. Push hard, eat right, sleep 7–9 hours, and enjoy the journey. You will grow.
+      </p>
+    </div>
+  </section>
+
+ 
+  <script>
+  
+
+    const translations = {
+      en: {
+        heading: "WORKOUT FUNDAMENTALS",
+        para: `My philosophy is simple: if you give your absolute best in the gym, train your sets to failure, and keep pushing harder — you will grow. No fancy technique or hack is a replacement for effort. Everything I’ve learned — from optimizing workouts to tracking nutrition — has come through 1.5 years of obsession with improving. I hit intermediate milestones in 6–8 months that usually take people years, not because I had a secret, but because I tracked everything, stayed consistent, and never stopped learning. My goal now is to pass that to you — to share the mindset, methods, and momentum that helped me. At the end of the day, this gym life is meant to be fun. Push hard, eat right, sleep 7–9 hours, and enjoy the journey. You will grow.`
+      },
+      ru: {
+        heading: "Workout Ke Bunyadi Usool",
+        para: `Meri philosophy simple hai: agar tum gym mein apna sab kuch de do, har set failure tak le jao aur har roz thoda zyada push karo — toh growth guaranteed hai. Koi optimization ya shortcut asli mehnat ka substitute nahi hai. Jo kuch bhi maine seekha — training, nutrition, tracking — wo sab maine 1.5 saal ki journey mein khud seekha hai. Maine woh cheezain 6–8 mahine mein hasil ki jo logon ko saalon mein milti hain, sirf is liye kyun ke maine har cheez track ki, consistency rakhi, aur seekhne ka process kabhi nahi chhoda. Ab mera goal hai ke ye sab aap logon ke saath share karun — taake aap bhi faida utha sako. End of the day, gym ka safar maza lena chahiye. Push karo, sahi khana khao, 7 se 9 ghante ki neend lo — growth tumhara peecha nahi chhoregi.`
+      },
+      ur: {
+        heading: "ورک آؤٹ کے بنیادی اصول",
+        para: `میری سوچ بالکل سادہ ہے: اگر آپ جم میں اپنی پوری جان لگا دیں، ہر سیٹ کو فیلئر تک لے جائیں اور روز تھوڑا زیادہ خود کو دھکیلیں — تو آپ ضرور گرو کریں گے۔ کوئی بھی تکنیک یا ٹِپ اصل محنت کا نعم البدل نہیں ہو سکتی۔ میں نے جو کچھ بھی سیکھا — چاہے وہ ورک آؤٹ کی تکنیک ہو یا نیوٹریشن کی سمجھ — وہ سب کچھ میں نے ڈیڑھ سال کی مسلسل محنت سے سیکھا ہے۔ میں نے چھ سے آٹھ ماہ میں وہ فٹنس لیولز حاصل کیے جو لوگوں کو سالوں میں بھی نہیں ملتے، اور وہ صرف اس لیے کہ میں نے ہر چیز کا حساب رکھا، مستقل رہا، اور سیکھنا کبھی بند نہیں کیا۔ اب میرا مقصد یہ سب کچھ آپ کو دینا ہے تاکہ آپ بھی فائدہ اٹھا سکیں۔ آخر میں، جم کا سفر ایک مزے دار سفر ہونا چاہیے۔ خود کو دھکیلو، اچھا کھاؤ، سات سے نو گھنٹے سوؤ — اور ترقی خود ہو گی۔`
+      }
+    };
+
+   
+    let currentLang = "en";
+    let idx = 0;
+    let timer;
+
+    function typeHeading() {
+      const txt = translations[currentLang].heading;
+      document.getElementById("typewriter").textContent = txt.substring(0, idx + 1);
+      idx++;
+      if (idx < txt.length) timer = setTimeout(typeHeading, 70);
+    }
+
+    function switchLang(lang) {
+      clearTimeout(timer);
+      currentLang = lang;
+      idx = 0;
+      document.getElementById("typewriter").textContent = "";
+      document.getElementById("philosophy-text").textContent = translations[lang].para;
+      typeHeading();
+    }
+
+    
+    typeHeading();
+
+ 
+    document.querySelectorAll(".lang-btn").forEach(btn =>
+      btn.addEventListener("click", () => switchLang(btn.dataset.lang))
+    );
+  </script>
+
+</body>
+</html>

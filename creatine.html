@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Why Creatine?</title>
+  <link rel="icon" href="logo.jpg" type="image/png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans text-white">
+
+  
+  <header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
+    <nav class="container mx-auto flex items-center justify-between">
+      
+      
+      <a href="index.html">
+        <img src="logo.jpg" alt="Logo"
+             class="w-100 h-100 md:w-[150px] md:h-[100px]" />
+      </a>
+  
+      <button id="main-btn" class="text-3xl md:hidden focus:outline-none">☰</button>
+  
+      
+      <div class="hidden md:flex items-center space-x-6 font-roboto font-semibold">
+        <a class="px-3 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+  
+       
+        <div class="relative group">
+          <button class="flex items-center px-3 hover:text-[#E60001]">
+            WORKOUT SPLITS <span class="ml-1 text-lg">▼</span>
+          </button>
+          <div class="absolute left-0 mt-1 hidden w-48 flex-col rounded bg-black/95 py-2 group-hover:flex">
+            <a href="./struct.html" class="px-4 py-1 hover:text-[#E60001]">Split Structuring Basics</a>
+            <a href="./3day.html" class="px-4 py-1 hover:text-[#E60001]">Full-Body (3-Day)</a>
+            <a href="./4day.html" class="px-4 py-1 hover:text-[#E60001]">Upper-Lower (4-Day)</a>
+            <a href="./6day.html" class="px-4 py-1 hover:text-[#E60001]">PPL (6-Day)</a>
+          </div>
+        </div>
+  
+        <!-- Gym Info ▼ -->
+        <div class="relative group">
+          <button class="flex items-center px-3 hover:text-[#E60001]">
+            GYM INFO <span class="ml-1 text-lg">▼</span>
+          </button>
+          <div class="absolute left-0 mt-1 hidden w-44 flex-col rounded bg-black/95 py-2 group-hover:flex">
+            <a href="./fundements.html" class="px-4 py-1 hover:text-[#E60001]">Workout Fundamentals</a>
+            <a href="./bulk.html" class="px-4 py-1 hover:text-[#E60001]">Bulk or Cut?</a>
+            <a href="./rep.html" class="px-4 py-1 hover:text-[#E60001]">Rep Ranges</a>
+            <a href="./creatine.html" class="px-4 py-1 hover:text-[#E60001]">Why Creatine?</a>
+            <a href="./rest.html" class="px-4 py-1 hover:text-[#E60001]">Rest & Recovery</a>
+          </div>
+        </div>
+  
+        <a class="px-3 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+        <a class="px-3 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+  
+        <!-- Instagram icon (desktop only) -->
+    
+      </div>
+    </nav>
+  
+    <!-- MOBILE menu -->
+    <div id="main-menu" class="hidden flex-col md:hidden px-4 pb-4">
+      <a class="py-2 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+  
+      <!-- Splits submenu -->
+      <button data-target="splits" class="flex items-center py-2 hover:text-[#E60001]">
+        WORKOUT SPLITS <span class="ml-1">▼</span>
+      </button>
+      <div id="splits" class="hidden flex-col pl-4">
+        <a class="py-1 hover:text-[#E60001]" href="./struct.html">Split Structuring Basics</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./3day.html">Full-Body (3-Day)</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./4day.html">Upper-Lower (4-Day)</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./6day.html">PPL (6-Day)</a>
+      </div>
+  
+      <!-- Gym submenu -->
+      <button data-target="info" class="flex items-center py-2 hover:text-[#E60001]">
+        GYM INFO <span class="ml-1">▼</span>
+      </button>
+      <div id="info" class="hidden flex-col pl-4">
+        <a class="py-1 hover:text-[#E60001]" href="/fundements.html"  >Workout Fundamentals</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./bulk.html">Bulk or Cut</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./rep.html">Rep Ranges</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./creatine.html">Why Creatine?</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./rest.html">Rest & Recovery</a>
+      </div>
+  
+      <a class="py-2 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+      <a class="py-2 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+  <br>
+  <br>
+    
+    </div>
+  
+    
+    <script>
+      document.getElementById('main-btn').onclick = () =>
+        document.getElementById('main-menu').classList.toggle('hidden');
+      document.querySelectorAll('[data-target]').forEach(btn => {
+        btn.onclick = () =>
+          document.getElementById(btn.dataset.target).classList.toggle('hidden');
+      });
+    </script>
+  </header>
+
+
+  <div class="flex justify-center bg-[#E60001] py-3">
+    <div class="inline-flex rounded-xl overflow-hidden shadow-lg">
+      <button data-lang="en" class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base">English</button>
+      <button data-lang="ru" class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base border-l border-white/20">Roman&nbsp;Urdu</button>
+      <button data-lang="ur" class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base border-l border-white/20">اردو</button>
+    </div>
+  </div>
+
+ 
+  <section class="bg-[#E60001] text-white py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 id="sec1-heading" class="text-3xl sm:text-4xl font-bold mb-6"></h2>
+      <p id="sec1-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+
+  <section class="bg-white text-black py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto">
+      <h2 id="sec2-heading" class="text-3xl sm:text-4xl font-bold text-center mb-8"></h2>
+      <p id="sec2-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+  
+  <section class="bg-[#E60001] text-white py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 id="sec3-heading" class="text-3xl sm:text-4xl font-bold mb-6"></h2>
+      <p id="sec3-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+  
+
+  <!-- === SCRIPT === -->
+  <script>
+    const t = {
+      en: {
+        "sec1-heading": "Why Creatine Works",
+        "sec1-text": `Creatine is the <strong>most researched and proven-effective supplement in sports science</strong>. It helps improve strength, muscle recovery, endurance, and even cognitive performance. Countless studies — like those published in <em>JISSN</em> and <em>Journal of Strength and Conditioning Research</em> — confirm its effectiveness and safety, especially when taken as <strong>creatine monohydrate</strong>. It’s affordable, safe, and one of the few supplements that actually delivers.`,
+
+        "sec2-heading": "Any Downsides?",
+        "sec2-text": `Creatine may cause <strong>temporary water retention</strong> in muscles — which is harmless. A small number of people may experience bloating or minor digestive issues when loading doses. But study after study shows <strong>no link between creatine and kidney damage</strong> in healthy individuals. It’s not a steroid — and it’s one of the safest things you can take.`,
+
+        "sec3-heading": "What About Whey & Pre-Workout?",
+        "sec3-text": `Whey protein is helpful — but not essential. If you hit your protein intake through food, you’re good. Pre-workout can be effective, especially during a cut when energy is low. But don’t overuse it — <strong>tolerance builds fast</strong>, so keep it occasional and use it strategically.`,
+
+        "sec4-heading": "Want to Try Creatine or Whey?",
+        "sec4-text": `You can get quality creatine, whey, and pre-workout from Jacked Nutrition with <strong>my exclusive discount code</strong>. Just hit the button below and use code <strong>SM10</strong> at checkout.`
+      },
+
+      ru: {
+        "sec1-heading": "Creatine Kyun Kaam Karta Hai",
+        "sec1-text": `Creatine <strong>sab se zyada research hua supplement</strong> hai jo proven results deta hai. Ye aapki strength, recovery, stamina aur hatta ke brain function tak improve karta hai. Research studies jaise JISSN aur JSCR ne baar baar iski safety aur effectiveness prove ki hai — khas tor par <strong>creatine monohydrate</strong> ke form mein.`,
+
+        "sec2-heading": "Kya Koi Nuksan Hai?",
+        "sec2-text": `Kabhi kabar creatine <strong>pani retain</strong> karwa sakta hai muscles mein — jo bilkul harmless hai. Kuch logon ko loading phase mein bloating ya halka discomfort hota hai. Lekin studies ne proof kiya hai ke <strong>healthy logon mein creatine kidney damage nahi karta</strong>. Ye steroid nahi hai — aur kaafi safe hai.`,
+
+        "sec3-heading": "Whey Protein Aur Pre-workout?",
+        "sec3-text": `Whey acha hai — lekin agar aap apni protein zarurat khanay se poori karte ho to zaroori nahi. Pre-workout useful ho sakta hai, khas kar jab cut par ho aur energy kam ho. Lekin roz mat use karo — <strong>tolerance build ho jata hai</strong>, isliye smartly use karo.`,
+
+        "sec4-heading": "Jacked Nutrition Se Lena Hai?",
+        "sec4-text": `Whey, creatine, aur pre lena chahte ho? Neeche button press karo aur use karo code <strong>SM10</strong> to get special discounts.`
+      },
+
+      ur: {
+        "sec1-heading": "کریٹین کیوں کام کرتا ہے؟",
+        "sec1-text": `کریٹین <strong>سب سے زیادہ تحقیق شدہ اور مؤثر سپلیمنٹ</strong> ہے۔ یہ آپ کی طاقت، ریکوری، برداشت، اور ذہنی کارکردگی کو بہتر بناتا ہے۔ معروف جریدے جیسے JISSN اور JSCR نے <strong>کریٹین مونوہائیڈریٹ</strong> کی افادیت اور حفاظت کی تصدیق کی ہے۔ یہ سستا، محفوظ اور حقیقت میں مؤثر ہے۔`,
+
+        "sec2-heading": "کیا کوئی نقصانات ہیں؟",
+        "sec2-text": `کبھی کبھی کریٹین <strong>پانی روک لیتا ہے</strong> جو عارضی اور بے ضرر ہوتا ہے۔ کچھ لوگوں کو پیٹ میں ہلکی سی گیس یا بے چینی ہو سکتی ہے۔ لیکن تحقیق سے ثابت ہوا ہے کہ <strong>صحتمند لوگوں میں یہ گردوں کو نقصان نہیں دیتا</strong>۔ یہ سٹیرائیڈ نہیں ہے — اور سب سے محفوظ سپلیمنٹس میں سے ایک ہے۔`,
+
+        "sec3-heading": "وی پروٹین اور پری ورک آؤٹ؟",
+        "sec3-text": `وی پروٹین فائدہ مند ہے، لیکن اگر آپ کھانے سے پروٹین حاصل کر رہے ہیں تو ضروری نہیں۔ پری ورک آؤٹ کٹ پر زیادہ فائدہ دیتا ہے جب توانائی کم ہو۔ لیکن روزانہ استعمال نہ کریں — <strong>ٹالرنس بن جاتی ہے</strong>، اس لیے سمجھداری سے استعمال کریں۔`,
+
+        "sec4-heading": "چھوٹ حاصل کریں",
+        "sec4-text": `اگر آپ وی پروٹین، کریٹین یا پری لینا چاہتے ہیں تو نیچے دیے گئے بٹن پر کلک کریں اور چیک آؤٹ پر کوڈ <strong>SM10</strong> استعمال کریں تاکہ خصوصی ڈسکاؤنٹس حاصل ہوں۔`
+      }
+    };
+
+    function applyLang(lang) {
+      Object.keys(t[lang]).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = t[lang][id];
+      });
+    }
+
+    // Default load
+    let currentLang = "en";
+    applyLang(currentLang);
+
+    // Button events
+    document.querySelectorAll(".lang-btn").forEach(btn =>
+      btn.addEventListener("click", () => {
+        currentLang = btn.dataset.lang;
+        applyLang(currentLang);
+      })
+    );
+  </script>
+
+</body>
+</html>

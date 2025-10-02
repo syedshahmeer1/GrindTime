@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bulk or Cut?</title>
+  <link rel="icon" href="logo.jpg" type="image/png">
+
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="text-white bg-white">
+    
+    <header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
+        <nav class="container mx-auto flex items-center justify-between">
+          
+         
+          <a href="index.html">
+            <img src="logo.jpg" alt="Logo"
+                 class="w-100 h-100 md:w-[150px] md:h-[100px]" />
+          </a>
+      
+        
+          <button id="main-btn" class="text-3xl md:hidden focus:outline-none">☰</button>
+      
+         
+          <div class="hidden md:flex items-center space-x-6 font-roboto font-semibold">
+            <a class="px-3 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+      
+            <div class="relative group">
+              <button class="flex items-center px-3 hover:text-[#E60001]">
+                WORKOUT SPLITS <span class="ml-1 text-lg">▼</span>
+              </button>
+              <div class="absolute left-0 mt-1 hidden w-48 flex-col rounded bg-black/95 py-2 group-hover:flex">
+                <a href="./struct.html" class="px-4 py-1 hover:text-[#E60001]">Split Structuring Basics</a>
+                <a href="./3day.html" class="px-4 py-1 hover:text-[#E60001]">Full-Body (3-Day)</a>
+                <a href="./4day.html" class="px-4 py-1 hover:text-[#E60001]">Upper-Lower (4-Day)</a>
+                <a href="./6day.html" class="px-4 py-1 hover:text-[#E60001]">PPL (6-Day)</a>
+              </div>
+            </div>
+      
+            <div class="relative group">
+              <button class="flex items-center px-3 hover:text-[#E60001]">
+                GYM INFO <span class="ml-1 text-lg">▼</span>
+              </button>
+              <div class="absolute left-0 mt-1 hidden w-44 flex-col rounded bg-black/95 py-2 group-hover:flex">
+                <a href="./fundements.html" class="px-4 py-1 hover:text-[#E60001]">Workout Fundamentals</a>
+                <a href="./bulk.html" class="px-4 py-1 hover:text-[#E60001]">Bulk or Cut?</a>
+                <a href="./rep.html" class="px-4 py-1 hover:text-[#E60001]">Rep Ranges</a>
+                <a href="./creatine.html" class="px-4 py-1 hover:text-[#E60001]">Why Creatine?</a>
+                <a href="./rest.html" class="px-4 py-1 hover:text-[#E60001]">Rest & Recovery</a>
+              </div>
+            </div>
+      
+            <a class="px-3 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+            <a class="px-3 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+      
+           
+          </div>
+        </nav>
+      
+  
+        <div id="main-menu" class="hidden flex-col md:hidden px-4 pb-4">
+          <a class="py-2 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+      
+         
+          <button data-target="splits" class="flex items-center py-2 hover:text-[#E60001]">
+            WORKOUT SPLITS <span class="ml-1">▼</span>
+          </button>
+          <div id="splits" class="hidden flex-col pl-4">
+            <a class="py-1 hover:text-[#E60001]" href="./struct.html">Split Structuring Basics</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./3day.html">Full-Body (3-Day)</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./4day.html">Upper-Lower (4-Day)</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./6day.html">PPL (6-Day)</a>
+          </div>
+      
+          
+          <button data-target="info" class="flex items-center py-2 hover:text-[#E60001]">
+            GYM INFO <span class="ml-1">▼</span>
+          </button>
+          <div id="info" class="hidden flex-col pl-4">
+            <a class="py-1 hover:text-[#E60001]" href="/fundements.html"  >Workout Fundamentals</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./bulk.html">Bulk or Cut</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./rep.html">Rep Ranges</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./creatine.html">Why Creatine?</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="./rest.html">Rest & Recovery</a>
+          </div>
+      
+          <a class="py-2 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+          <a class="py-2 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+      <br>
+      <br>
+         
+         
+        </div>
+      
+    
+        <script>
+          document.getElementById('main-btn').onclick = () =>
+            document.getElementById('main-menu').classList.toggle('hidden');
+          document.querySelectorAll('[data-target]').forEach(btn => {
+            btn.onclick = () =>
+              document.getElementById(btn.dataset.target).classList.toggle('hidden');
+          });
+        </script>
+      </header>
+
+    <script>
+        
+        document.getElementById('main-btn').onclick = () => {
+          document.getElementById('main-menu').classList.toggle('hidden');
+        };
+    
+        document.querySelectorAll('[data-target]').forEach(button => {
+          button.onclick = () => {
+            const target = document.getElementById(button.dataset.target);
+            target.classList.toggle('hidden');
+          };
+        });
+      </script>
+
+<div class="flex justify-center bg-[#E60001] py-3">
+    <div class="inline-flex rounded-xl overflow-hidden shadow-lg">
+      <button data-lang="en" class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base">
+        English
+      </button>
+      <button data-lang="ru" class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base border-l border-white/20">
+        Roman&nbsp;Urdu
+      </button>
+      <button data-lang="ur" class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base border-l border-white/20">
+        اردو
+      </button>
+    </div>
+  </div>
+
+  <section class="bg-[#E60001] text-white py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 id="cal-heading" class="text-3xl sm:text-4xl font-bold mb-6"></h2>
+      <p id="cal-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+  <section class="bg-white text-black py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto">
+      <h2 id="story-heading" class="text-3xl sm:text-4xl font-bold text-center mb-10"></h2>
+      <p id="story-text" class="text-base sm:text-lg leading-relaxed text-center mb-10"></p>
+      
+    </div>
+  </section>
+
+  <section class="bg-[#E60001] text-white py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 id="strength-heading" class="text-3xl sm:text-4xl font-bold mb-6"></h2>
+      <p id="strength-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+  <section class="bg-white text-black py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto">
+      <h2 id="bulk-heading" class="text-3xl sm:text-4xl font-bold text-center mb-8"></h2>
+      <p id="bulk-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+  <section class="bg-[#E60001] py-12">
+    <div class="flex justify-center">
+      <a id="calc-btn" href="index.html"
+         class="bg-white text-[#E60001] font-semibold rounded-xl px-8 py-4 hover:bg-[#f2f2f2] text-lg sm:text-xl shadow-lg transition">
+       
+      </a>
+    </div>
+  </section>
+
+  
+  <script>
+    const t = {
+      en: {
+        "cal-heading":       "How Calories Actually Work",
+        "cal-text":          `Your body needs a certain number of calories each day just to maintain itself — this is called your maintenance. If you eat below this number, your body will burn itself to produce energy. It’s basic thermodynamics: eat less than you burn, and you’ll lose weight.\n\nMany people think they have to cut carbs or do something extreme — but none of that changes the fact that it all comes down to calorie balance. The tricky part is: what does your body burn? Ideally, it should burn fat. But fat is like your body’s savings — it doesn’t want to touch it. Instead, it can start burning muscle if you're not sending the right signals. That’s where strength training comes in.`,
+        "story-heading":     "My Mistake: Running Without Lifting",
+        "story-text":        `When I started out, I didn’t know how important strength training was. I just starved myself and ran a lot to get thinner. This photo shows me at 79 kg with almost no muscle. Later, I dropped to 79 kg again, but this time with strength training and a proper diet. Same weight — two completely different physiques.`,
+
+        "strength-heading":  "The Role of Strength Training",
+        "strength-text":     `To preserve your muscle while cutting, you need to train hard. Lifting sends a signal to your body: “This muscle is needed, don’t burn it.” Pair that with a protein-heavy diet — around 0.7–1 g per pound of body weight (1.8–2.2 g per kg). If you're 60 kg, aim for about 110–135 g of protein daily, and train at least 3 days a week.`,
+        "bulk-heading":      "Should You Be Bulking or Cutting?",
+        "bulk-text":         `When you bulk, only part of your calorie surplus becomes muscle; the rest turns to fat. For beginners, a 300–500 cal surplus works best. Intermediates should keep it tighter at 100–200 cal. Dirty bulks only slow you down.\n\nIf you’re starting with higher body-fat, cut first with a 500 cal deficit for a few months. Once you feel good, begin a slow lean bulk. Beginners can still build muscle on a cut if they lift properly — I started at 110 kg and proved it can be done. Remember: this is a marathon, not a sprint.`,
+        "calc-btn":         "Calculate Your Calories"
+      },
+      ru: {
+        "cal-heading":       "Calories Kaise Kaam Karte Hain",
+        "cal-text":          `Aapke jism ko roz ek muqarrar miqdaar ki calories chahiye hoti hain — isey maintenance kehte hain. Agar aap is se kam khaayenge, jism apni energy banane ke liye khud ko hi jalaayega. Seedhi si thermodynamics: jitna kum khaao, utna wazan ghatayega.\n\nLog samajhte hain carbs kaatne ya koi extreme tareeqa zaroori hai, lekin asli baat sirf calorie balance hai. Sawal ye hai ke jism kya jalata hai? Ideal taur par to charbi jalni chahiye, lekin charbi jism ki “bachat” hai. Signal na milne par jism pehle muscle jalana shuru kar sakta hai. Yahin strength training help karti hai.`,
+        "story-heading":     "Meri Ghalti: Sirf Cardio, Koi Weight Nahin",
+        "story-text":        `Shuru mein mujhe strength training ki ahmiyat ka pata nahin tha. Maine bas khaana kam kiya aur bhaagta raha. Pehli tasveer 79 kg par hai—muscle bilkul nahin. Baad mein, phir 79 kg hua lekin is dafaa weight training aur diet ke saath. Wazan wohi, lekin body bilkul mukhtalif.`,
+        
+        "strength-heading":  "Strength Training Ki Zaroorat",
+        "strength-text":     `Cut karte waqt muscle bachane ke liye heavy training zaroori hai. Weights uthao to jism ko signal milta hai: “Ye muscle zaroori hai.” Sath hi protein-heavy diet lo — takreeban 0.7–1 g per lb (1.8–2.2 g per kg). Agar aap 60 kg hain, to 110–135 g protein rozana khaayen, aur kam-az-kam 3 din week me train karein.`,
+        "bulk-heading":      "Bulking Karun Ya Cut?",
+        "bulk-text":         `Bulk karte waqt surplus ka sirf kuch hissa muscle banta hai, baaqi charbi. Beginners ke liye 300–500 cal surplus sahi hai. Intermediates 100–200 cal rakhein. Dirty bulk time barbaad karta hai.\n\nAgar shuru mein fat zyada hai, pehle 500 cal deficit ke saath cut karein. Jab acha mehsoos ho, lean bulk shuru karein. Beginners cut par bhi muscle bana sakte hain—maine 110 kg se start karke ye sab kar ke dikhaya. Yaad rakho: ye marathon hai, sprint nahin.`,
+        "calc-btn":         "Calories Calculate Karo"
+      },
+      ur: {
+        "cal-heading":       "کیلوریز کیسے کام کرتی ہیں؟",
+        "cal-text":          `آپ کے جسم کو روزانہ ایک خاص مقدار میں کیلوریز درکار ہوتی ہیں جسے “مینٹیننس” کہا جاتا ہے۔ اگر آپ اس سے کم کھائیں تو جسم توانائی بنانے کے لیے خود کو جلائے گا۔ سیدھا سا اصول: جتنا کم کھائیں گے، وزن کم ہوگا۔\n\nلوگ سمجھتے ہیں کہ کارب کاٹنے یا کسی اور انتہا پسند طریقے کی ضرورت ہے، لیکن حقیقت صرف کیلوری بیلنس ہے۔ سوال یہ ہے کہ جسم کیا جلاتا ہے؟ ideally چربی، لیکن چربی جسم کی بچت ہوتی ہے۔ اگر صحیح سگنل نہ ملے تو جسم پہلے پٹھے جلاتا ہے۔ اسی لیے ویٹ ٹریننگ ضروری ہے۔`,
+        "story-heading":     "میری غلطی: صرف کارڈیوں، ویٹ نہیں",
+        "story-text":        `شروع میں مجھے طاقت کی ٹریننگ کی اہمیت کا علم نہیں تھا۔ میں نے بس کم کھایا اور بہت دوڑا۔ پہلی تصویر 79 کلو کی ہے—تقریباً کوئی پٹھا نہیں۔ بعد میں پھر 79 کلو ہوا، لیکن اس بار ویٹ ٹریننگ اور ٹھیک ڈائیٹ کے ساتھ۔ وزن وہی، مگر جسم بالکل الگ۔`,
+      
+        "strength-heading":  "ویٹ ٹریننگ کی اہمیت",
+        "strength-text":     `کٹنگ کے دوران پٹھے بچانے کے لیے ویٹ ٹریننگ ضروری ہے۔ ویٹ اٹھانے سے جسم کو سگنل ملتا ہے کہ یہ پٹھے ضروری ہیں۔ اس کے ساتھ پروٹین سے بھرپور ڈائیٹ لیں — تقریباً 0.7–1 گرام فی پاؤنڈ (1.8–2.2 گرام فی کلوگرام). اگر آپ 60 کلو ہیں تو روزانہ 110–135 گرام پروٹین لیں اور کم از کم ہفتے میں 3 دن ورزش کریں۔`,
+        "bulk-heading":      "آپ کو بلک کرنا چاہیے یا کٹ؟",
+        "bulk-text":         `بلک کرتے وقت کیلوری سرپلس کا صرف کچھ حصہ پٹھوں میں تبدیل ہوتا ہے، باقی چربی بنتی ہے۔ Beginners کے لیے 300–500 کیلوری سرپلس بہتر ہے، intermediates کے لیے 100–200 کیلوری۔ ڈرٹی بلک صرف وقت ضائع کرتا ہے۔\n\nاگر شروع میں چربی زیادہ ہے تو پہلے 500 کیلوری خسارے کے ساتھ کٹ کریں۔ جب بہتر محسوس ہو تو سست رفتار لین بلک شروع کریں۔ Beginners کٹ پر بھی پٹھے بنا سکتے ہیں — میں نے خود 110 کلو سے یہ ثابت کیا ہے۔ یاد رکھیں: یہ دوڑ نہیں بلکہ میراتھن ہے۔`,
+        "calc-btn":         "اپنی کیلوریز حساب کریں"
+      }
+    };
+
+    function applyLang(lang) {
+      Object.keys(t[lang]).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = t[lang][id];
+      });
+    }
+
+    // default language
+    let currentLang = "en";
+    applyLang(currentLang);
+
+    // button events
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        currentLang = btn.dataset.lang;
+        applyLang(currentLang);
+      });
+    });
+  </script>
+
+</body>
+</html>

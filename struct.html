@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Split Structuring Basics</title>
+  <link rel="icon" href="logo.jpg" type="image/png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans text-white">
+
+ 
+  <header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
+    <nav class="container mx-auto flex items-center justify-between">
+      
+      
+      <a href="index.html">
+        <img src="logo.jpg" alt="Logo"
+             class="w-100 h-100 md:w-[150px] md:h-[100px]" />
+      </a>
+  
+      <!-- Mobile hamburger -->
+      <button id="main-btn" class="text-3xl md:hidden focus:outline-none">☰</button>
+  
+      <!-- DESKTOP menu -->
+      <div class="hidden md:flex items-center space-x-6 font-roboto font-semibold">
+        <a class="px-3 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+  
+        <!-- Workout Splits ▼ -->
+        <div class="relative group">
+          <button class="flex items-center px-3 hover:text-[#E60001]">
+            WORKOUT SPLITS <span class="ml-1 text-lg">▼</span>
+          </button>
+          <div class="absolute left-0 mt-1 hidden w-48 flex-col rounded bg-black/95 py-2 group-hover:flex">
+            <a href="./struct.html" class="px-4 py-1 hover:text-[#E60001]">Split Structuring Basics</a>
+            <a href="./3day.html" class="px-4 py-1 hover:text-[#E60001]">Full-Body (3-Day)</a>
+            <a href="./4day.html" class="px-4 py-1 hover:text-[#E60001]">Upper-Lower (4-Day)</a>
+            <a href="./6day.html" class="px-4 py-1 hover:text-[#E60001]">PPL (6-Day)</a>
+          </div>
+        </div>
+  
+        <!-- Gym Info ▼ -->
+        <div class="relative group">
+          <button class="flex items-center px-3 hover:text-[#E60001]">
+            GYM INFO <span class="ml-1 text-lg">▼</span>
+          </button>
+          <div class="absolute left-0 mt-1 hidden w-44 flex-col rounded bg-black/95 py-2 group-hover:flex">
+            <a href="./fundements.html" class="px-4 py-1 hover:text-[#E60001]">Workout Fundamentals</a>
+            <a href="./bulk.html" class="px-4 py-1 hover:text-[#E60001]">Bulk or Cut?</a>
+            <a href="./rep.html" class="px-4 py-1 hover:text-[#E60001]">Rep Ranges</a>
+            <a href="./creatine.html" class="px-4 py-1 hover:text-[#E60001]">Why Creatine?</a>
+            <a href="./rest.html" class="px-4 py-1 hover:text-[#E60001]">Rest & Recovery</a>
+          </div>
+        </div>
+  
+        <a class="px-3 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+        <a class="px-3 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+  
+       
+      </div>
+    </nav>
+  
+    <!-- MOBILE menu -->
+    <div id="main-menu" class="hidden flex-col md:hidden px-4 pb-4">
+      <a class="py-2 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+  
+      <!-- Splits submenu -->
+      <button data-target="splits" class="flex items-center py-2 hover:text-[#E60001]">
+        WORKOUT SPLITS <span class="ml-1">▼</span>
+      </button>
+      <div id="splits" class="hidden flex-col pl-4">
+        <a class="py-1 hover:text-[#E60001]" href="./struct.html">Split Structuring Basics</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./3day.html">Full-Body (3-Day)</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./4day.html">Upper-Lower (4-Day)</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./6day.html">PPL (6-Day)</a>
+      </div>
+  
+      <!-- Gym submenu -->
+      <button data-target="info" class="flex items-center py-2 hover:text-[#E60001]">
+        GYM INFO <span class="ml-1">▼</span>
+      </button>
+      <div id="info" class="hidden flex-col pl-4">
+        <a class="py-1 hover:text-[#E60001]" href="/fundements.html"  >Workout Fundamentals</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./bulk.html">Bulk or Cut</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./rep.html">Rep Ranges</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./creatine.html">Why Creatine?</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./rest.html">Rest & Recovery</a>
+      </div>
+  
+      <a class="py-2 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+      <a class="py-2 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+  <br>
+  <br>
+     
+    </div>
+  
+    <!-- Toggle script -->
+    <script>
+      document.getElementById('main-btn').onclick = () =>
+        document.getElementById('main-menu').classList.toggle('hidden');
+      document.querySelectorAll('[data-target]').forEach(btn => {
+        btn.onclick = () =>
+          document.getElementById(btn.dataset.target).classList.toggle('hidden');
+      });
+    </script>
+  </header>
+  <div class="flex justify-center bg-[#E60001] py-3">
+    <div class="inline-flex rounded-xl overflow-hidden shadow-lg">
+      <button data-lang="en" class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base">English</button>
+      <button data-lang="ru" class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base border-l border-white/20">Roman&nbsp;Urdu</button>
+      <button data-lang="ur" class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base border-l border-white/20">اردو</button>
+    </div>
+  </div>
+
+  <!-- === SECTION 1: Frequency & Rest === -->
+  <section class="bg-[#E60001] text-white py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 id="sec1-heading" class="text-3xl sm:text-4xl font-bold mb-6"></h2>
+      <p id="sec1-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+  <!-- === SECTION 2: Alternating Muscle Focus === -->
+  <section class="bg-white text-black py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto">
+      <h2 id="sec2-heading" class="text-3xl sm:text-4xl font-bold text-center mb-8"></h2>
+      <p id="sec2-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+  <!-- === SECTION 3: Compounds First === -->
+  <section class="bg-[#E60001] text-white py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 id="sec3-heading" class="text-3xl sm:text-4xl font-bold mb-6"></h2>
+      <p id="sec3-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+  <!-- === SECTION 4: Stick & Evolve === -->
+  <section class="bg-white text-black py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto">
+      <h2 id="sec4-heading" class="text-3xl sm:text-4xl font-bold text-center mb-8"></h2>
+      <p id="sec4-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+  <!-- === TRANSLATION SCRIPT === -->
+  <script>
+    const t = {
+      en: {
+        "sec1-heading": "Train Every Muscle Twice a Week",
+        "sec1-text": `For optimal growth, you should train each muscle group at least <strong>twice per week</strong>. Just make sure to give it <strong>at least 48 hours of rest</strong> before hitting it again. Recovery is when growth happens.`,
+
+        "sec2-heading": "Alternate Priority Within the Week",
+        "sec2-text": `You can hit the same muscle twice a week, but change the order. For example, on one day: <strong>Back → Biceps</strong>. On the next: <strong>Biceps → Back</strong>. The muscle trained first will get more energy and focus.`,
+
+        "sec3-heading": "Start with Compound Movements",
+        "sec3-text": `Exercises like bench press, squats, and deadlifts hit multiple muscles at once. Start your workout with a compound movement, especially if it's for a muscle group you want to grow faster.`,
+
+        "sec4-heading": "Stick to a Plan, Then Restructure",
+        "sec4-text": `When you make a plan — stick to it. Use the <strong>same exercises for at least 12 weeks</strong> so you can track your lifts and see real progress. After that, feel free to restructure. What matters most is <strong>consistency and experimentation</strong>.`
+      },
+
+      ru: {
+        "sec1-heading": "Har Muscle Ko Do Martaba Train Karo",
+        "sec1-text": `Har muscle ko <strong>haftay mein kam az kam do dafa</strong> train karo. Lekin do workouts ke darmiyan us muscle ko <strong>kam az kam 48 ghantay ka aaram</strong> do. Recovery ke waqt hi growth hoti hai.`,
+
+        "sec2-heading": "Muscle Order Ko Rotate Karo",
+        "sec2-text": `Week mein do martaba ek muscle hit karo, lekin order change karo. Pehle din: <strong>Back → Biceps</strong>, doosre din: <strong>Biceps → Back</strong>. Jo muscle pehle train hota hai, us par zyada focus aur energy lagti hai.`,
+
+        "sec3-heading": "Compound Lifts Pehle Karo",
+        "sec3-text": `Bench press, squats jaise compound lifts multiple muscles ko hit karte hain. Workout ki shuruaat compound lift se karo — khas tor par agar woh muscle grow karna chahte ho.`,
+
+        "sec4-heading": "Plan Par Stick Karo, Phir Badlo",
+        "sec4-text": `Ek dafa jab plan bana lo, us par <strong>kam az kam 12 haftay</strong> stick karo. Wohi exercises repeat karo taake lifts ko track kar sako. Baad mein, zarurat ke mutabiq structure change karo. <strong>Consistency aur experiment karna</strong> sab se zaroori hain.`
+      },
+
+      ur: {
+        "sec1-heading": "ہر مسل کو ہفتے میں دو بار ٹرین کریں",
+        "sec1-text": `بہترین نتائج کے لیے <strong>ہر مسل کو ہفتے میں کم از کم دو بار</strong> ٹرین کریں۔ لیکن دوبارہ ٹرین کرنے سے پہلے <strong>کم از کم 48 گھنٹے کا آرام</strong> ضرور دیں۔ اصل ترقی ریکوری کے دوران ہوتی ہے۔`,
+
+        "sec2-heading": "مسلز کی ترتیب کو بدلیں",
+        "sec2-text": `اگر آپ ہفتے میں دو بار ایک مسل ٹرین کر رہے ہیں، تو ترتیب بدلیں۔ مثلاً پہلے دن: <strong>بیک → بائسپ</strong>، دوسرے دن: <strong>بائسپ → بیک</strong>۔ جو مسل پہلے ٹرین ہوتا ہے، وہ زیادہ فوکس اور توانائی حاصل کرتا ہے۔`,
+
+        "sec3-heading": "کمپاؤنڈ لفٹس سے آغاز کریں",
+        "sec3-text": `بینچ پریس، اسکواٹس، ڈیڈلفٹ جیسے کمپاؤنڈ ایکسرسائزز کئی مسلز کو ایک ساتھ ہٹ کرتے ہیں۔ اپنی ورزش کا آغاز کمپاؤنڈ لفٹ سے کریں، خاص طور پر اگر وہ مسل آپ کو تیزی سے گرو کرنا ہو۔`,
+
+        "sec4-heading": "پلان پر عمل کریں، پھر تبدیلی لائیں",
+        "sec4-text": `ایک بار جب پلان بنا لیں، تو اس پر <strong>کم از کم 12 ہفتے</strong> عمل کریں۔ ایک ہی ایکسرسائزز کریں تاکہ اپنی ترقی کو ٹریک کر سکیں۔ اس کے بعد اپنے لحاظ سے تبدیلی لائیں۔ سب سے اہم ہے <strong>تسلسل اور تجربہ</strong>۔`
+      }
+    };
+
+    function applyLang(lang) {
+      Object.keys(t[lang]).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = t[lang][id];
+      });
+    }
+
+    // Default language
+    let currentLang = "en";
+    applyLang(currentLang);
+
+    // Toggle language
+    document.querySelectorAll(".lang-btn").forEach(btn =>
+      btn.addEventListener("click", () => {
+        currentLang = btn.dataset.lang;
+        applyLang(currentLang);
+      })
+    );
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SymGym</title>
+  <link rel="icon" href="logo.jpg" type="image/png">
+
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="text-white bg-[#E60001]">
+
+  <header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
+    <nav class="container mx-auto flex items-center justify-between">
+      
+      <a href="index.html">
+        <img src="logo.jpg" alt="Logo"
+             class="w-100 h-100 md:w-[150px] md:h-[100px]" />
+      </a>
+  
+     
+      <button id="main-btn" class="text-3xl md:hidden focus:outline-none">☰</button>
+  
+      
+      <div class="hidden md:flex items-center space-x-6 font-roboto font-semibold">
+        <a class="px-3 hover:text-[#E60001]" href="#caloriecalc">CALORIE CALCULATOR</a>
+  
+        
+        <div class="relative group">
+          <button class="flex items-center px-3 hover:text-[#E60001]">
+            WORKOUT SPLITS <span class="ml-1 text-lg">▼</span>
+          </button>
+          <div class="absolute left-0 mt-1 hidden w-48 flex-col rounded bg-black/95 py-2 group-hover:flex">
+            <a href="./struct.html" class="px-4 py-1 hover:text-[#E60001]">Split Structuring Basics</a>
+            <a href="./3day.html" class="px-4 py-1 hover:text-[#E60001]">Full-Body (3-Day)</a>
+            <a href="./4day.html" class="px-4 py-1 hover:text-[#E60001]">Upper-Lower (4-Day)</a>
+            <a href="./6day.html" class="px-4 py-1 hover:text-[#E60001]">PPL (6-Day)</a>
+          </div>
+        </div>
+  
+       
+        <div class="relative group">
+          <button class="flex items-center px-3 hover:text-[#E60001]">
+            GYM INFO <span class="ml-1 text-lg">▼</span>
+          </button>
+          <div class="absolute left-0 mt-1 hidden w-44 flex-col rounded bg-black/95 py-2 group-hover:flex">
+            <a href="./fundements.html" class="px-4 py-1 hover:text-[#E60001]">Workout Fundamentals</a>
+            <a href="./bulk.html" class="px-4 py-1 hover:text-[#E60001]">Bulk or Cut?</a>
+            <a href="./rep.html" class="px-4 py-1 hover:text-[#E60001]">Rep Ranges</a>
+            <a href="./creatine.html" class="px-4 py-1 hover:text-[#E60001]">Why Creatine?</a>
+            <a href="./rest.html" class="px-4 py-1 hover:text-[#E60001]">Rest & Recovery</a>
+          </div>
+        </div>
+  
+        <a class="px-3 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+        <a class="px-3 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+  
+
+      </div>
+    </nav>
+  
+  
+    <div id="main-menu" class="hidden flex-col md:hidden px-4 pb-4">
+      <a class="py-2 hover:text-[#E60001]" href="#caloriecalc">CALORIE CALCULATOR</a>
+  
+      
+      <button data-target="splits" class="flex items-center py-2 hover:text-[#E60001]">
+        WORKOUT SPLITS <span class="ml-1">▼</span>
+      </button>
+      <div id="splits" class="hidden flex-col pl-4">
+        <a class="py-1 hover:text-[#E60001]" href="./struct.html">Split Structuring Basics</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./3day.html">Full-Body (3-Day)</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./4day.html">Upper-Lower (4-Day)</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./6day.html">PPL (6-Day)</a>
+      </div>
+  
+      
+      <button data-target="info" class="flex items-center py-2 hover:text-[#E60001]">
+        GYM INFO <span class="ml-1">▼</span>
+      </button>
+      <div id="info" class="hidden flex-col pl-4">
+        <a class="py-1 hover:text-[#E60001]" href="/fundements.html"  >Workout Fundamentals</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./bulk.html">Bulk or Cut</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./rep.html">Rep Ranges</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./creatine.html">Why Creatine?</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./rest.html">Rest & Recovery</a>
+      </div>
+  
+      <a class="py-2 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+      <br>
+      <a class="py-2 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+  <br>
+  <br>
+      
+    </div>
+  
+    
+    <script>
+      document.getElementById('main-btn').onclick = () =>
+        document.getElementById('main-menu').classList.toggle('hidden');
+      document.querySelectorAll('[data-target]').forEach(btn => {
+        btn.onclick = () =>
+          document.getElementById(btn.dataset.target).classList.toggle('hidden');
+      });
+    </script>
+  </header>
+  <section id="caloriecalc">
+  
+   <div class="relative w-full h-[1000px] overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center  bg-black brightness-50" ></div>
+  
+    <div class="relative z-10 flex flex-col items-center justify-center h-full px-4">
+      <h1 class="text-white font-bold font-roboto text-3xl md:text-5xl text-center mb-8">
+        ELEVATE YOUR <span class="text-[#E60001]">FITNESS</span> JOURNEY
+      </h1>
+  
+      <button id="openForm" class="bg-[#E60001] hover:bg-[#c40001] text-white text-lg md:text-xl px-8 py-4 rounded-xl shadow-lg">
+        Calculate My Calories
+      </button>
+    </div>
+  </div>
+  
+
+  <div id="calorieModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-30">
+    <div class="bg-white w-11/12 max-w-md md:max-w-lg rounded-2xl p-6 md:p-8 max-h-[90vh] overflow-y-auto relative">
+     
+      <button id="closeForm" class="absolute top-3 right-3 text-2xl text-gray-500 hover:text-gray-700">&times;</button>
+  
+      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center text-[#E60001]">Calorie Calculator</h2>
+  
+    
+      <form id="calorieForm" class="space-y-6">
+      
+        <div class="flex gap-3">
+          <div class="flex-1">
+            <label for="heightFeet" class="block font-medium mb-1 text-black">Height (ft)</label>
+            <input id="heightFeet" type="number" step="1" placeholder="5" class="w-full border border-gray-400 rounded-lg p-2 text-black focus:ring-[#E60001]/50" />
+          </div>
+          <div class="flex-1">
+            <label for="heightInch" class="block font-medium mb-1 text-black">Height (in)</label>
+            <input id="heightInch" type="number" step="1" placeholder="10" class="w-full border border-gray-400 rounded-lg p-2 text-black focus:ring-[#E60001]/50" />
+          </div>
+        </div>
+  
+      
+        <div>
+          <label for="weightInput" class="block font-medium mb-1 text-black">Weight (kg)</label>
+          <input id="weightInput" type="number" step="0.1" placeholder="70.5" class="w-full border border-gray-400 rounded-lg p-2 text-black focus:ring-[#E60001]/50" />
+        </div>
+  
+ 
+        <div>
+          <label for="ageInput" class="block font-medium mb-1 text-black">Age (yrs)</label>
+          <input id="ageInput" type="number" step="1" placeholder="25" class="w-full border border-gray-400 rounded-lg p-2 text-black focus:ring-[#E60001]/50" />
+        </div>
+  
+        <div>
+          <label for="genderSelect" class="block font-medium mb-1 text-black">Gender</label>
+          <select id="genderSelect" class="w-full border border-gray-400 rounded-lg p-2 text-black focus:ring-[#E60001]/50">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+  
+        
+        <div>
+          <label for="activitySelect" class="block font-medium mb-1 text-black">Activity Level</label>
+          <select id="activitySelect" class="w-full border border-gray-400 rounded-lg p-2 text-black focus:ring-[#E60001]/50">
+            <option value="1.2">Sedentary</option>
+            <option value="1.375">Lightly Active</option>
+            <option value="1.55">Moderately Active</option>
+            <option value="1.725">Very Active</option>
+            <option value="1.9">Extra Active</option>
+          </select>
+        </div>
+  
+        <!-- Experience -->
+        <div>
+          <label for="experienceSelect" class="block font-medium mb-1 text-black">Training Experience</label>
+          <select id="experienceSelect" class="w-full border border-gray-400 rounded-lg p-2 text-black focus:ring-[#E60001]/50">
+            <option value="beginner">&lt; 1.5 yrs (Beginner)</option>
+            <option value="advanced">≥ 1.5 yrs (Experienced)</option>
+          </select>
+        </div>
+  
+        <!-- ===== FAQ (read before submit) ===== -->
+        <div class="text-black">
+          <h3 class="text-lg font-bold mb-2 text-[#E60001] text-center">Activity Level FAQ</h3>
+          <details class="mb-2"><summary class="font-medium cursor-pointer">Sedentary</summary><p class="mt-1 text-sm text-gray-700">No workouts; fewer than 3&nbsp;000 steps per day.</p></details>
+          <details class="mb-2"><summary class="font-medium cursor-pointer">Lightly Active</summary><p class="mt-1 text-sm text-gray-700">Strength-train 3–4&nbsp;days/week &amp; 3–5 k steps daily.</p></details>
+          <details class="mb-2"><summary class="font-medium cursor-pointer">Moderately Active</summary><p class="mt-1 text-sm text-gray-700">Strength-train 4–5&nbsp;days/week &amp; 7–9 k steps daily.</p></details>
+          <details class="mb-2"><summary class="font-medium cursor-pointer">Very Active</summary><p class="mt-1 text-sm text-gray-700">Strength-train 5–6&nbsp;days/week &amp; 10–13 k steps daily.</p></details>
+          <details><summary class="font-medium cursor-pointer">Extra Active</summary><p class="mt-1 text-sm text-gray-700">Strength-train 6&nbsp;days/week &amp; 15–20 k steps daily.</p></details>
+        </div>
+  
+        <!-- Calculate -->
+        <button type="submit" class="w-full bg-[#E60001] hover:bg-[#c40001] text-white py-3 rounded-xl font-semibold">Calculate</button>
+      </form>
+  
+      <!-- ===== RESULTS ===== -->
+      <div id="resultBox" class="mt-8 hidden">
+        <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-[#E60001]">Your Calories</h3>
+        <ul id="resultsList" class="space-y-1 text-gray-800 text-center"></ul>
+      </div>
+    </div>
+  </div>
+  
+  
+  </section>
+  
+  
+
+  <!-- === JS to toggle menus === -->
+  <script>
+    // Main mobile menu toggle
+    document.getElementById('main-btn').onclick = () => {
+      document.getElementById('main-menu').classList.toggle('hidden');
+    };
+
+    // Submenu toggles for mobile
+    document.querySelectorAll('[data-target]').forEach(button => {
+      button.onclick = () => {
+        const target = document.getElementById(button.dataset.target);
+        target.classList.toggle('hidden');
+      };
+    });
+  </script>
+<script>
+    // Modal toggle
+    const modal = document.getElementById("calorieModal");
+    document.getElementById("openForm").onclick = () => modal.classList.remove("hidden");
+    document.getElementById("closeForm").onclick = () => modal.classList.add("hidden");
+    modal.onclick = (e) => { if (e.target === modal) modal.classList.add("hidden"); };
+  
+    // Calculation
+    document.getElementById("calorieForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const ft   = +document.getElementById("heightFeet").value || 0;
+      const inch = +document.getElementById("heightInch").value || 0;
+      const cm   = (ft * 12 + inch) * 2.54;
+      const kg   = +document.getElementById("weightInput").value || 0;
+      const age  = +document.getElementById("ageInput").value    || 0;
+  
+      const gender    = document.getElementById("genderSelect").value;
+      const activity  = +document.getElementById("activitySelect").value;
+      const experience= document.getElementById("experienceSelect").value;
+  
+      // BMR formula depending on gender
+      const bmr = gender === "male"
+        ? 10 * kg + 6.25 * cm - 5 * age + 5
+        : 10 * kg + 6.25 * cm - 5 * age - 161;
+  
+      const maintenance = Math.round(bmr * activity);
+      const bulk        = experience === "beginner" ? maintenance + 500 : maintenance + 200;
+      const normalCut   = maintenance - 500;
+      const aggressiveCut = maintenance - 1000;
+      const protein=Math.ceil(kg*2.2);
+      const protlower=Math.ceil(protein*(75/100));
+  
+      document.getElementById("resultsList").innerHTML = `
+        <li><strong>Maintenance:</strong> ${maintenance} kcal</li>
+        <li><strong>Bulk:</strong> ${bulk} kcal</li>
+        <li><strong>Normal Cut (-500):</strong> ${normalCut} kcal</li>
+        <li><strong>Aggressive Cut (-1000):</strong> ${aggressiveCut} kcal</li>
+        <li><strong>Protein Goals:</strong> ${protlower}-${protein} grams</li>
+      `;
+      document.getElementById("resultBox").classList.remove("hidden");
+    });
+  </script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</body>
+</html>

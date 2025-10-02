@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rest & Recovery</title>
+  <link rel="icon" href="logo.jpg" type="image/png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans text-white">
+
+ 
+  <header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
+    <nav class="container mx-auto flex items-center justify-between">
+      
+      <!-- Logo (original sizing) -->
+      <a href="index.html">
+        <img src="logo.jpg" alt="Logo"
+             class="w-100 h-100 md:w-[150px] md:h-[100px]" />
+      </a>
+  
+      <!-- Mobile hamburger -->
+      <button id="main-btn" class="text-3xl md:hidden focus:outline-none">☰</button>
+  
+      <!-- DESKTOP menu -->
+      <div class="hidden md:flex items-center space-x-6 font-roboto font-semibold">
+        <a class="px-3 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+  
+        <!-- Workout Splits ▼ -->
+        <div class="relative group">
+          <button class="flex items-center px-3 hover:text-[#E60001]">
+            WORKOUT SPLITS <span class="ml-1 text-lg">▼</span>
+          </button>
+          <div class="absolute left-0 mt-1 hidden w-48 flex-col rounded bg-black/95 py-2 group-hover:flex">
+            <a href="./struct.html" class="px-4 py-1 hover:text-[#E60001]">Split Structuring Basics</a>
+            <a href="./3day.html" class="px-4 py-1 hover:text-[#E60001]">Full-Body (3-Day)</a>
+            <a href="./4day.html" class="px-4 py-1 hover:text-[#E60001]">Upper-Lower (4-Day)</a>
+            <a href="./6day.html" class="px-4 py-1 hover:text-[#E60001]">PPL (6-Day)</a>
+          </div>
+        </div>
+  
+        <!-- Gym Info ▼ -->
+        <div class="relative group">
+          <button class="flex items-center px-3 hover:text-[#E60001]">
+            GYM INFO <span class="ml-1 text-lg">▼</span>
+          </button>
+          <div class="absolute left-0 mt-1 hidden w-44 flex-col rounded bg-black/95 py-2 group-hover:flex">
+            <a href="./fundements.html" class="px-4 py-1 hover:text-[#E60001]">Workout Fundamentals</a>
+            <a href="./bulk.html" class="px-4 py-1 hover:text-[#E60001]">Bulk or Cut?</a>
+            <a href="./rep.html" class="px-4 py-1 hover:text-[#E60001]">Rep Ranges</a>
+            <a href="./creatine.html" class="px-4 py-1 hover:text-[#E60001]">Why Creatine?</a>
+            <a href="./rest.html" class="px-4 py-1 hover:text-[#E60001]">Rest & Recovery</a>
+          </div>
+        </div>
+  
+        <a class="px-3 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+        <a class="px-3 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+  
+        
+      </div>
+    </nav>
+  
+    <!-- MOBILE menu -->
+    <div id="main-menu" class="hidden flex-col md:hidden px-4 pb-4">
+      <a class="py-2 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+  
+      <!-- Splits submenu -->
+      <button data-target="splits" class="flex items-center py-2 hover:text-[#E60001]">
+        WORKOUT SPLITS <span class="ml-1">▼</span>
+      </button>
+      <div id="splits" class="hidden flex-col pl-4">
+        <a class="py-1 hover:text-[#E60001]" href="./struct.html">Split Structuring Basics</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./3day.html">Full-Body (3-Day)</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./4day.html">Upper-Lower (4-Day)</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./6day.html">PPL (6-Day)</a>
+      </div>
+  
+      <!-- Gym submenu -->
+      <button data-target="info" class="flex items-center py-2 hover:text-[#E60001]">
+        GYM INFO <span class="ml-1">▼</span>
+      </button>
+      <div id="info" class="hidden flex-col pl-4">
+        <a class="py-1 hover:text-[#E60001]" href="/fundements.html"  >Workout Fundamentals</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./bulk.html">Bulk or Cut</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./rep.html">Rep Ranges</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./creatine.html">Why Creatine?</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./rest.html">Rest & Recovery</a>
+      </div>
+  
+      <a class="py-2 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+      <a class="py-2 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+  <br>
+  <br>
+      
+    </div>
+  
+    <!-- Toggle script -->
+    <script>
+      document.getElementById('main-btn').onclick = () =>
+        document.getElementById('main-menu').classList.toggle('hidden');
+      document.querySelectorAll('[data-target]').forEach(btn => {
+        btn.onclick = () =>
+          document.getElementById(btn.dataset.target).classList.toggle('hidden');
+      });
+    </script>
+  </header>
+  <!-- === LANGUAGE TOGGLE === -->
+  <div class="flex justify-center bg-[#E60001] py-3">
+    <div class="inline-flex rounded-xl overflow-hidden shadow-lg">
+      <button data-lang="en" class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base">English</button>
+      <button data-lang="ru" class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base border-l border-white/20">Roman&nbsp;Urdu</button>
+      <button data-lang="ur" class="lang-btn px-4 py-2 text-white bg-[#E60001] hover:bg-[#c40001] text-sm sm:text-base border-l border-white/20">اردو</button>
+    </div>
+  </div>
+
+  <!-- === SECTION 1: Recovery is #1 === -->
+  <section class="bg-[#E60001] text-white py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 id="sec1-heading" class="text-3xl sm:text-4xl font-bold mb-6"></h2>
+      <p id="sec1-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+  <!-- === SECTION 2: Sleep Guidelines === -->
+  <section class="bg-white text-black py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto">
+      <h2 id="sec2-heading" class="text-3xl sm:text-4xl font-bold text-center mb-8"></h2>
+      <p id="sec2-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+  <!-- === SECTION 3: What Rest Means === -->
+  <section class="bg-[#E60001] text-white py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 id="sec3-heading" class="text-3xl sm:text-4xl font-bold mb-6"></h2>
+      <p id="sec3-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+  <!-- === SECTION 4: Final Motivation === -->
+  <section class="bg-white text-black py-16 px-4 sm:px-10">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 id="sec4-heading" class="text-3xl sm:text-4xl font-bold mb-6"></h2>
+      <p id="sec4-text" class="text-base sm:text-lg leading-relaxed"></p>
+    </div>
+  </section>
+
+  <!-- === SCRIPT === -->
+  <script>
+    const t = {
+      en: {
+        "sec1-heading": "Recovery Is the Most Important",
+        "sec1-text": `According to the National Strength and Conditioning Association (NSCA), <strong>recovery is more important than training and nutrition</strong>. Research from the <em>Journal of Sports Sciences</em> confirms that even <strong>steroid users lose muscle if sleep and rest are inadequate</strong>. Your body grows when you rest, not when you lift.`,
+
+        "sec2-heading": "How Much Sleep Do You Need?",
+        "sec2-text": `<strong>Men need 7–9 hours</strong> of sleep nightly (Sleep Foundation). <strong>Women benefit most from 8–10 hours</strong> due to higher recovery needs, hormone fluctuation, and cognitive load. Sleep is when recovery truly happens — don’t skip it.`,
+
+        "sec3-heading": "What Recovery Actually Means",
+        "sec3-text": `Take 1–2 full rest days per week. Don’t hit a muscle again until it’s fully recovered. <strong>Sleeping 3–4 hours a night and overtraining kills your gains</strong>. Full, consistent sleep beats any supplement.`,
+
+        "sec4-heading": "Lift Hard. Recover Harder.",
+        "sec4-text": `If you’re not prioritizing recovery, you’re leaving gains on the table. The real growth happens between workouts — when you’re sleeping, eating, and healing. <strong>Respect the rest.</strong>`
+      },
+
+      ru: {
+        "sec1-heading": "Recovery Sab Se Important Hai",
+        "sec1-text": `NSCA aur Sports Science ke mutabiq, <strong>recovery training aur diet se bhi zyada important hai</strong>. Research yeh bhi kehti hai ke agar aap steroids par bhi ho, lekin sleep aur rest proper nahi, <strong>toh gains nahi aayengi</strong>. Jism rest ke dauraan grow karta hai.`,
+
+        "sec2-heading": "Neend Kitni Honi Chahiye?",
+        "sec2-text": `<strong>Men: 7–9 ghante</strong>. <strong>Women: 8–10 ghante</strong> — hormonal cycle aur body recovery ki wajah se. Neend hi asal mein muscle repair aur growth ka waqt hota hai.`,
+
+        "sec3-heading": "Rest Ka Matlab Kya Hai?",
+        "sec3-text": `Hafte mein 1–2 din complete rest lo. Agar muscle recover nahi hua to dobara mat train karo. <strong>Sirf 3–4 ghante sona aur roz train karna aapke progress ko slow kar dega</strong>. Proper neend > har supplement.`,
+
+        "sec4-heading": "Lift Karo, Magar Rest Bhi Karo",
+        "sec4-text": `Agar aap recovery ko ignore kar rahe ho to gains waste kar rahe ho. Real growth gym ke baad hoti hai — jab aap so rahe hote ho. <strong>Rest ko izzat do</strong>.`
+      },
+
+      ur: {
+        "sec1-heading": "ریکوری سب سے اہم ہے",
+        "sec1-text": `نیشنل اسٹرینتھ اینڈ کنڈیشنگ ایسوسی ایشن کے مطابق <strong>ریکوری ٹریننگ اور ڈائٹ سے بھی زیادہ ضروری ہے</strong>۔ تحقیق بتاتی ہے کہ <strong>اگر آپ سٹیرائیڈز پر بھی ہوں، لیکن نیند اور آرام پورا نہ کریں تو پٹھے ضائع ہو جاتے ہیں</strong>۔ ترقی جم میں نہیں، ریکوری کے دوران ہوتی ہے۔`,
+
+        "sec2-heading": "کتنی نیند لینی چاہیے؟",
+        "sec2-text": `<strong>مردوں کو 7–9 گھنٹے</strong> نیند چاہیے ہوتی ہے۔ <strong>عورتوں کو 8–10 گھنٹے</strong> — کیونکہ اُنہیں زیادہ بحالی، ہارمونی تبدیلی اور دماغی آرام کی ضرورت ہوتی ہے۔ یہی وقت ہوتا ہے جب جسم اصل میں بحال ہوتا ہے۔`,
+
+        "sec3-heading": "ریکوری کا مطلب",
+        "sec3-text": `ہفتے میں 1–2 دن مکمل آرام ضروری ہے۔ کسی مسل کو دوبارہ ہٹ نہ کریں جب تک وہ پوری طرح بحال نہ ہو جائے۔ <strong>کم نیند اور بار بار ٹریننگ کرنے سے فائدے کم ہو جاتے ہیں</strong>۔ سستی سپلیمنٹ سے بہتر ہے مکمل نیند۔`,
+
+        "sec4-heading": "سخت محنت کے بعد مکمل آرام بھی کریں",
+        "sec4-text": `اگر آپ آرام کو اہمیت نہیں دے رہے تو آپ واقعی ترقی سے محروم ہو رہے ہیں۔ اصل گروتھ اس وقت ہوتی ہے جب آپ آرام کر رہے ہوتے ہیں۔ <strong>آرام کی عزت کریں</strong>.`
+      }
+    };
+
+    function applyLang(lang) {
+      Object.keys(t[lang]).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerHTML = t[lang][id];
+      });
+    }
+
+    // Initial load
+    let currentLang = "en";
+    applyLang(currentLang);
+
+    // Toggle
+    document.querySelectorAll(".lang-btn").forEach(btn =>
+      btn.addEventListener("click", () => {
+        currentLang = btn.dataset.lang;
+        applyLang(currentLang);
+      })
+    );
+  </script>
+
+</body>
+</html>
