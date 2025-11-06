@@ -98,12 +98,19 @@
       <a class="py-2 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
       <br>
       <a class="py-2 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
-  <br>
-  <br>
-      
-    </div>
   
-    
+      <button data-target="account" class="flex items-center py-2 hover:text-[#E60001]">
+        ACCOUNT <span class="ml-1">▼</span>
+      </button>
+      <div id="account" class="hidden flex-col pl-4">
+        <a class="py-1 hover:text-[#E60001]" href="/login.html">Login</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./signup.html">Signup</a>
+      </div>
+  <br>
+  <br>
+    </div>
+
     <script>
       document.getElementById('main-btn').onclick = () =>
         document.getElementById('main-menu').classList.toggle('hidden');
