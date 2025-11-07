@@ -149,20 +149,20 @@
         <!-- Login Form -->
         <section class="container mx-auto py-8">
             <h1 class="text-4xl font-bold mb-4">Login</h1>
-            <form action="/login" method="POST"
+            <form id="loginForm" action="/login" method="POST"
                 class="bg-black/95 p-6 rounded shadow-md">
                 <div class="mb-4">
                     <label for="username"
                         class="block text-sm font-medium">Username</label>
                     <input type="text" id="username" name="username" required
-                        class="mt-1 block w-full p-2 border border-gray-300 rounded" />
+                        class="mt-1 block w-full p-2 text-black border border-gray-300 rounded" />
                 </div>
                 <div class="mb-4">
                     <label for="password"
                         class="block text-sm font-medium">Password</label>
                     <input type="password" id="password" name="password"
                         required
-                        class="mt-1 block w-full p-2 border border-gray-300 rounded" />
+                        class="mt-1 block w-full p-2 text-black border border-gray-300 rounded" />
                 </div>
                 <button type="submit"
                     class="w-full bg-[#E60001] hover:bg-[#B00000] text-white font-bold py-2 px-4 rounded">Log
@@ -179,5 +179,27 @@
                 </div>
             </form>
         </section>
+        <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+      const em = document.getElementById('email').value;
+      const p = document.getElementById('password').value;
+      const err = document.getElementById('error');
+      err.classList.add('hidden'); err.textContent = '';
+
+      if (!em) {
+        e.preventDefault();
+        err.textContent = "Please enter a valid email.";
+        err.classList.remove('hidden');
+        return;
+      }
+      if (!p) {
+        e.preventDefault();
+        err.textContent = "Please enter a password.";
+        err.classList.remove('hidden');
+        return;
+      }
+      // Server-side will also validate credentials
+    });
+        </script>
     </body>
 </html>
