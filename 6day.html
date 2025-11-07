@@ -13,20 +13,19 @@
   <header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
     <nav class="container mx-auto flex items-center justify-between">
       
-      
       <a href="index.html">
         <img src="logo.jpg" alt="Logo"
              class="w-100 h-100 md:w-[150px] md:h-[100px]" />
       </a>
   
-      
+     
       <button id="main-btn" class="text-3xl md:hidden focus:outline-none">☰</button>
   
-      <!-- DESKTOP menu -->
+      
       <div class="hidden md:flex items-center space-x-6 font-roboto font-semibold">
-        <a class="px-3 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
+        <a class="px-3 hover:text-[#E60001]" href="#caloriecalc">CALORIE CALCULATOR</a>
   
-        <!-- Workout Splits ▼ -->
+        
         <div class="relative group">
           <button class="flex items-center px-3 hover:text-[#E60001]">
             WORKOUT SPLITS <span class="ml-1 text-lg">▼</span>
@@ -39,7 +38,7 @@
           </div>
         </div>
   
-        <!-- Gym Info ▼ -->
+       
         <div class="relative group">
           <button class="flex items-center px-3 hover:text-[#E60001]">
             GYM INFO <span class="ml-1 text-lg">▼</span>
@@ -56,15 +55,15 @@
         <a class="px-3 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
         <a class="px-3 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
   
-        
+
       </div>
     </nav>
   
-    <!-- MOBILE menu -->
-    <div id="main-menu" class="hidden flex-col md:hidden px-4 pb-4">
-      <a class="py-2 hover:text-[#E60001]" href="./index.html">CALORIE CALCULATOR</a>
   
-      <!-- Splits submenu -->
+    <div id="main-menu" class="hidden flex-col md:hidden px-4 pb-4">
+      <a class="py-2 hover:text-[#E60001]" href="#caloriecalc">CALORIE CALCULATOR</a>
+  
+      
       <button data-target="splits" class="flex items-center py-2 hover:text-[#E60001]">
         WORKOUT SPLITS <span class="ml-1">▼</span>
       </button>
@@ -78,7 +77,7 @@
         <a class="py-1 hover:text-[#E60001]" href="./6day.html">PPL (6-Day)</a>
       </div>
   
-      <!-- Gym submenu -->
+      
       <button data-target="info" class="flex items-center py-2 hover:text-[#E60001]">
         GYM INFO <span class="ml-1">▼</span>
       </button>
@@ -95,13 +94,21 @@
       </div>
   
       <a class="py-2 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
+      <br>
       <a class="py-2 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+
+      <button data-target="account" class="flex items-center py-2 hover:text-[#E60001]">
+        ACCOUNT <span class="ml-1">▼</span>
+      </button>
+      <div id="account" class="hidden flex-col pl-4">
+        <a class="py-1 hover:text-[#E60001]" href="/login.html">Login</a>
+        <br>
+        <a class="py-1 hover:text-[#E60001]" href="./signup.html">Signup</a>
+      </div>
   <br>
   <br>
-      
     </div>
-  
-    <!-- Toggle script -->
+
     <script>
       document.getElementById('main-btn').onclick = () =>
         document.getElementById('main-menu').classList.toggle('hidden');

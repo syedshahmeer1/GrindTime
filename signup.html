@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Coming Soon</title>
-  <link rel="icon" href="logo.jpg" type="image/png" />
+  <title>Sign Up</title>
+  <link rel="icon" href="logo.jpg" type="image/png">
+
+  
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="font-sans bg-white text-black">
 
+<body class="text-white bg-white">
 
-<header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
+  <header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
     <nav class="container mx-auto flex items-center justify-between">
       
       <a href="index.html">
@@ -118,16 +120,92 @@
       });
     </script>
   </header>
-  
-  <section class="bg-[#E60001] text-white py-24 px-4 sm:px-10">
-    <div class="max-w-3xl mx-auto text-center">
-      <h1 class="text-4xl sm:text-5xl font-bold mb-6">Coming Soon</h1>
-      <p class="text-lg sm:text-xl leading-relaxed">
-        This page is under construction and will be live very soon.<br>
-        Stay tuned for updates!
-      </p>
+
+    <!-- Typewriter Header -->
+  <section class="bg-[#E60001] py-16 sm:py-24 px-4 sm:px-8">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 id="typewriter"
+          class="text-4xl sm:text-5xl md:text-6xl font-bold text-white whitespace-nowrap min-h-[3.5rem] md:min-h-[4.5rem]">
+          SIGN UP
+      </h1>
     </div>
   </section>
+  <script>
+    const typewriterElement = document.getElementById('typewriter');
+    const text = typewriterElement.textContent;
+    typewriterElement.textContent = '';
+    let index = 0;
 
+    function type() {
+      if (index < text.length) {
+        typewriterElement.textContent += text.charAt(index);
+        index++;
+        setTimeout(type, 100);
+      }
+    }
+
+    type();
+  </script>
+  <!-- Signup Form -->
+   <section class="container mx-auto mt-10 px-4">
+      <form id="signupForm" action="#" method="POST" class="bg-black/95 p-6 rounded shadow-md">
+        <div class="mb-4">
+          <label for="username" class="block text-sm font-semibold mb-2">Username</label>
+          <input type="text" id="username" name="username" required
+                 class="w-full px-3 py-2 text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#E60001]">
+        </div>
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-semibold mb-2">Email</label>
+          <input type="email" id="email" name="email" required
+                 class="w-full px-3 py-2 text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#E60001]">
+        </div>
+        <div class="mb-6">
+          <label for="password" class="block text-sm font-semibold mb-2">Password</label>
+          <input type="password" id="password" name="password" required
+                 class="w-full px-3 py-2 text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#E60001]">
+        </div>
+        <div class="mb-6">
+          <label for="confirm-password" class="block text-sm font-semibold mb-2">Confirm Password</label>
+          <input type="password" id="confirm-password" name="confirm-password" required
+                 class="w-full px-3 py-2 text-black border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-[#E60001]">
+        </div>
+        <div class="flex justify-center">
+          <button type="submit"
+                  class="bg-[#E60001] text-white px-6 py-2 rounded hover:bg-red-700 transition-colors duration-300">
+            Create Account
+          </button>
+        </div>
+      </form>
+    </section>
+    <script>
+    // client-side validation (also validate on server)
+    document.getElementById('signupForm').addEventListener('submit', function (e) {
+      const em = document.getElementById('email').value;
+      const p = document.getElementById('password').value;
+      const c = document.getElementById('confirm-password').value;
+      const err = document.getElementById('error');
+      err.classList.add('hidden'); err.textContent = '';
+
+      if (!em) {
+        e.preventDefault();
+        err.textContent = "Please enter a valid email.";
+        err.classList.remove('hidden');
+        return;
+      }
+      if (!p) {
+        e.preventDefault();
+        err.textContent = "Please enter a password.";
+        err.classList.remove('hidden');
+        return;
+      }
+      if (p !== c) {
+        e.preventDefault();
+        err.textContent = "Passwords don't match.";
+        err.classList.remove('hidden');
+        return;
+      }
+      // allow submit; server must set password securely
+    });
+  </script>
 </body>
 </html>

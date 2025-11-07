@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Coming Soon</title>
-  <link rel="icon" href="logo.jpg" type="image/png" />
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="font-sans bg-white text-black">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>GrindTime</title>
+        <link rel="icon" href="logo.jpg" type="image/png">
 
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
 
-<header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
+    <body class="text-white bg-white">
+
+        <header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
     <nav class="container mx-auto flex items-center justify-between">
       
       <a href="index.html">
@@ -118,16 +119,87 @@
       });
     </script>
   </header>
-  
-  <section class="bg-[#E60001] text-white py-24 px-4 sm:px-10">
-    <div class="max-w-3xl mx-auto text-center">
-      <h1 class="text-4xl sm:text-5xl font-bold mb-6">Coming Soon</h1>
-      <p class="text-lg sm:text-xl leading-relaxed">
-        This page is under construction and will be live very soon.<br>
-        Stay tuned for updates!
-      </p>
-    </div>
-  </section>
 
-</body>
+        <!-- Typewriter Header -->
+        <section class="bg-[#E60001] py-16 sm:py-24 px-4 sm:px-8">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 id="typewriter"
+                    class="text-4xl sm:text-5xl md:text-6xl font-bold text-white whitespace-nowrap min-h-[3.5rem] md:min-h-[4.5rem]">
+                    LOGIN
+                </h1>
+            </div>
+        </section>
+        <script>
+    const typewriterElement = document.getElementById('typewriter');
+    const text = typewriterElement.textContent;
+    typewriterElement.textContent = '';
+    let index = 0;
+
+    function type() {
+      if (index < text.length) {
+        typewriterElement.textContent += text.charAt(index);
+        index++;
+        setTimeout(type, 100);
+      }
+    }
+
+    type();
+    </script>
+
+        <!-- Login Form -->
+        <section class="container mx-auto py-8">
+            <h1 class="text-4xl font-bold mb-4">Login</h1>
+            <form id="loginForm" action="/login" method="POST"
+                class="bg-black/95 p-6 rounded shadow-md">
+                <div class="mb-4">
+                    <label for="username"
+                        class="block text-sm font-medium">Username</label>
+                    <input type="text" id="username" name="username" required
+                        class="mt-1 block w-full p-2 text-black border border-gray-300 rounded" />
+                </div>
+                <div class="mb-4">
+                    <label for="password"
+                        class="block text-sm font-medium">Password</label>
+                    <input type="password" id="password" name="password"
+                        required
+                        class="mt-1 block w-full p-2 text-black border border-gray-300 rounded" />
+                </div>
+                <button type="submit"
+                    class="w-full bg-[#E60001] hover:bg-[#B00000] text-white font-bold py-2 px-4 rounded">Log
+                    In</button>
+                <div class="mt-4 text-sm">
+                    Don't have an account? <a href="signup.html"
+                        class="text-[#E60001] hover:underline">Sign up</a>
+                </div>
+                <div></div>
+                <div class="mt-2 text-sm">
+                    <a href="forgot-password.html"
+                        class="text-[#E60001] hover:underline">Forgot
+                        Password?</a>
+                </div>
+            </form>
+        </section>
+        <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+      const em = document.getElementById('email').value;
+      const p = document.getElementById('password').value;
+      const err = document.getElementById('error');
+      err.classList.add('hidden'); err.textContent = '';
+
+      if (!em) {
+        e.preventDefault();
+        err.textContent = "Please enter a valid email.";
+        err.classList.remove('hidden');
+        return;
+      }
+      if (!p) {
+        e.preventDefault();
+        err.textContent = "Please enter a password.";
+        err.classList.remove('hidden');
+        return;
+      }
+      // Server-side will also validate credentials
+    });
+        </script>
+    </body>
 </html>
