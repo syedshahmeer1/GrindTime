@@ -1,0 +1,56 @@
+
+[1] Chicken, chicken roll, roasted (FDC ID: 2706087, type: Survey (FNDDS))
+  (No nutrients found in details)
+
+[2] TYSON, CHICKEN DRUMSTICKS (FDC ID: 2107196, type: Branded)
+  Nutrients:
+    - Energy: 150 kcal
+    - Protein: 17.0 g
+    - Total lipid (fat): 8.0 g
+    - Carbohydrate, by difference: 0.0 g
+    - sugars: 0.0 g
+    - fiber: 0.0 g
+    - saturatedFat: 2.5 g
+    - transFat: 0.0 g
+    - sodium: 211 mg
+
+[3] TYSON, CHICKEN NUGGETS (FDC ID: 2617888, type: Branded)
+  Nutrients:
+    - Energy: 270 kcal
+    - Protein: 14.0 g
+    - Total lipid (fat): 17.0 g
+    - Carbohydrate, by difference: 15.0 g
+    - sugars: 0.0 g
+    - fiber: 0.0 g
+    - saturatedFat: 4.0 g
+    - transFat: 0.0 g
+    - sodium: 470 mg
+
+[4] TYSON, CHICKEN NUGGETS (FDC ID: 2107026, type: Branded)
+  Nutrients:
+    - Energy: 200 kcal
+    - Protein: 12.0 g
+    - Total lipid (fat): 11.0 g
+    - Carbohydrate, by difference: 14.0 g
+    - sugars: 0.0 g
+    - fiber: 0.0 g
+    - saturatedFat: 2.5 g
+    - transFat: 0.0 g
+    - sodium: 360 mg
+
+[5] TYSON, CHICKEN WINGS (FDC ID: 538842, type: Branded)
+  Nutrients:
+    - Energy: 220 kcal
+    - Protein: 17.0 g
+    - Total lipid (fat): 17.0 g
+    - Carbohydrate, by difference: 0.0 g
+    - sugars: 0.0 g
+    - fiber: 0.0 g
+    - saturatedFat: 5.0 g
+    - transFat: 0.0 g
+    - sodium: 190 mg
+
+[6] Orange chicken (FDC ID: 2706443, type: Survey (FNDDS))
+  (No nutrients found in details)
+
+Done.

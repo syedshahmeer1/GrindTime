@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nutrition Search Powered by USDA</title>
+</head>
+<body>
+  <h1>Nutrition Search Powered by USDA</h1>
+
+  <form id="nutrition-search-form">
+    <label for="nutrition-query">Search for a food item:</label>
+    <input type="text" id="nutrition-query" name="q" required />
+    <button type="submit">Search</button>
+  </form>
+
+  <div id="nutrition-status"></div>
+  <div id="nutrition-results"></div>
+
+  <script>
+    // Adjust this if you choose a different Netlify function path
+    const USDA_FUNCTION_URL = "/.netlify/functions/usda-search";
+
+    const form = document.getElementById("nutrition-search-form");
+    const queryInput = document.getElementById("nutrition-query");
+    const statusDiv = document.getElementById("nutrition-status");
+    const resultsDiv = document.getElementById("nutrition-results");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const query = queryInput.value.trim();
+      if (!query) return;
+
+      statusDiv.textContent = "Searching...";
+      resultsDiv.innerHTML = "";
+
+      try {
+        const url = USDA_FUNCTION_URL + "?q=" + encodeURIComponent(query);
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error("Request failed with status " + response.status);
+        }
+
+        /** Expected JSON shape (you'll implement in the Netlify function):
+         * {
+         *   "results": [
+         *     {
+         *       "fdcId": 123456,
+         *       "description": "Tyson Chicken Breast",
+         *       "brandOwner": "Tyson Foods",
+         *       "dataType": "Branded",
+         *       "nutrients": {
+         *         "Energy": "230 kcal",
+         *         "Protein": "25 g",
+         *         "Total lipid (fat)": "10 g",
+         *         "Carbohydrate, by difference": "1 g"
+         *       }
+         *     },
+         *     ...
+         *   ]
+         * }
+         */
+        const data = await response.json();
+
+        statusDiv.textContent = "";
+
+        const results = Array.isArray(data.results) ? data.results : [];
+        if (results.length === 0) {
+          resultsDiv.textContent = "No results found.";
+          return;
+        }
+
+        const list = document.createElement("div");
+
+        results.forEach((item) => {
+          const card = document.createElement("div");
+
+          const title = document.createElement("h2");
+          title.textContent = item.description || "Unnamed food";
+
+          const meta = document.createElement("p");
+          const brand = item.brandOwner ? " · " + item.brandOwner : "";
+          const type = item.dataType ? " [" + item.dataType + "]" : "";
+          meta.textContent = `FDC ID: ${item.fdcId || "N/A"}${brand}${type}`;
+
+          card.appendChild(title);
+          card.appendChild(meta);
+
+          if (item.nutrients && typeof item.nutrients === "object") {
+            const nutrientsList = document.createElement("ul");
+            Object.keys(item.nutrients).forEach((nutrientName) => {
+              const li = document.createElement("li");
+              li.textContent = `${nutrientName}: ${item.nutrients[nutrientName]}`;
+              nutrientsList.appendChild(li);
+            });
+            card.appendChild(nutrientsList);
+          }
+
+          list.appendChild(card);
+        });
+
+        resultsDiv.appendChild(list);
+      } catch (err) {
+        console.error(err);
+        statusDiv.textContent = "An error occurred while searching. Please try again.";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Exercise Video Search Powered By YouTube</title>
+</head>
+<body>
+  <h1>Exercise Video Search Powered By YouTube</h1>
+
+  <form id="video-search-form">
+    <label for="video-query">Search for an exercise:</label>
+    <input type="text" id="video-query" name="q" required />
+    <button type="submit">Search</button>
+  </form>
+
+  <div id="video-status"></div>
+  <div id="video-results"></div>
+
+  <script>
+    // Adjust this if you choose a different Netlify function path
+    const YT_FUNCTION_URL = "/.netlify/functions/youtube-search";
+
+    const videoForm = document.getElementById("video-search-form");
+    const videoInput = document.getElementById("video-query");
+    const videoStatus = document.getElementById("video-status");
+    const videoResults = document.getElementById("video-results");
+
+    videoForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const query = videoInput.value.trim();
+      if (!query) return;
+
+      videoStatus.textContent = "Searching...";
+      videoResults.innerHTML = "";
+
+      try {
+        const url = YT_FUNCTION_URL + "?q=" + encodeURIComponent(query);
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error("Request failed with status " + response.status);
+        }
+
+        /** Expected JSON shape (you'll implement in the Netlify function):
+         * {
+         *   "results": [
+         *     {
+         *       "videoId": "abcd1234",
+         *       "title": "How to Do a Split Squat",
+         *       "channelTitle": "Some Fitness Channel",
+         *       "publishedAt": "2023-01-01T00:00:00Z",
+         *       "viewCount": "12345",
+         *       "likeCount": "678",
+         *       "thumbnailUrl": "https://i.ytimg.com/vi/abcd1234/hqdefault.jpg"
+         *     },
+         *     ...
+         *   ]
+         * }
+         */
+        const data = await response.json();
+
+        videoStatus.textContent = "";
+
+        const results = Array.isArray(data.results) ? data.results : [];
+        if (results.length === 0) {
+          videoResults.textContent = "No videos found.";
+          return;
+        }
+
+        const container = document.createElement("div");
+
+        results.forEach((video) => {
+          const card = document.createElement("div");
+
+          const title = document.createElement("h2");
+          title.textContent = video.title || "Untitled video";
+
+          const meta = document.createElement("p");
+          const channel = video.channelTitle ? " · " + video.channelTitle : "";
+          const published = video.publishedAt ? " · " + video.publishedAt : "";
+          meta.textContent = `${video.videoId || ""}${channel}${published}`;
+
+          card.appendChild(title);
+          card.appendChild(meta);
+
+          // Build watch URL and thumbnail
+          const videoId = video.videoId;
+          if (videoId) {
+            const watchUrl = "https://www.youtube.com/watch?v=" + videoId;
+            const thumbUrl =
+              video.thumbnailUrl ||
+              `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
+            const link = document.createElement("a");
+            link.href = watchUrl;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+
+            const img = document.createElement("img");
+            img.src = thumbUrl;
+            img.alt = video.title || "Video thumbnail";
+
+            link.appendChild(img);
+            card.appendChild(link);
+          }
+
+          const stats = document.createElement("p");
+          const views = video.viewCount ? `Views: ${video.viewCount}` : "";
+          const likes = video.likeCount ? ` · Likes: ${video.likeCount}` : "";
+          stats.textContent = views + likes;
+
+          card.appendChild(stats);
+
+          container.appendChild(card);
+        });
+
+        videoResults.appendChild(container);
+      } catch (err) {
+        console.error(err);
+        videoStatus.textContent = "An error occurred while searching. Please try again.";
+      }
+    });
+  </script>
+</body>
+</html>
