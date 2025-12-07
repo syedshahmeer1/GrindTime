@@ -187,7 +187,7 @@
     const API_BASE =
       window.location.hostname === "localhost"
         ? "http://127.0.0.1:8000"                 // when testing locally with uvicorn
-        : "https://YOUR-RENDER-APP.onrender.com"; // <-- replace with your actual Render URL
+        : "https://grindtime.onrender.com"; // <-- replace with your actual Render URL
 
     async function signupRequest(email, password) {
       const res = await fetch(`${API_BASE}/api/signup`, {
