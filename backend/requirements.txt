@@ -4,3 +4,4 @@ passlib[bcrypt]
 bcrypt
 pydantic
 email-validator
+python-jose[cryptography]

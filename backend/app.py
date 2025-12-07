@@ -1,11 +1,18 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr
-import sqlite3
+from jose import JWTError, jwt
 from contextlib import asynccontextmanager
+from typing import Optional
+from datetime import datetime, timedelta
+import sqlite3
 
 from database import init_db
 from databaseauth import create_user, verify_user
+
+SECRET_KEY = "1d28e0b5c91fab3cd555e6c82805ec2ca97d01a51a75bdbf0cd31d1a42246132ff722552b649f568ed74ea207c03f595a1f04258e6bcccf46b6fd7690656400f"
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # e.g. 7 days
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -39,6 +46,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
+    to_encode = data.copy()
+    if expires_delta:
+        expire = datetime.utcnow() + expires_delta
+    else:
+        expire = datetime.utcnow() + timedelta(minutes=15)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+
 
 # ----- Request/Response models -----
 
@@ -60,6 +78,8 @@ class SigninRequest(BaseModel):
 class SigninResponse(BaseModel):
     message: str
     user_id: int
+    access_token: str
+    token_type: str = "bearer"
 
 
 @app.get("/")
@@ -93,10 +113,18 @@ async def signin(payload: SigninRequest):
 
     user = verify_user(email, password)
     if user is None:
-        # Either email not found or password incorrect
         raise HTTPException(status_code=401, detail="Invalid email or password.")
+
+    # Create JWT token with user id and email
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(
+        data={"sub": str(user["id"]), "email": email},
+        expires_delta=access_token_expires,
+    )
 
     return SigninResponse(
         message="Signed in",
         user_id=user["id"],
+        access_token=access_token,
+        token_type="bearer",
     )

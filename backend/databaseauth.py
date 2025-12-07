@@ -32,11 +32,13 @@ def verify_user(email: str, password: str):
     """
     Returns the user row if the email/password are correct, otherwise None.
     """
-    user = get_user_by_email(email)
-    if user is None:
+    conn = get_connection()
+    row = conn.execute("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
+    if not row:
         return None
 
-    if not bcrypt.verify(password, user["password_hash"]):
-        return None
+    if bcrypt.verify(password, row["password_hash"]):
+        return row
 
-    return user  # correct credentials
+    return None
+

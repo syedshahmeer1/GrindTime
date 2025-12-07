@@ -56,6 +56,8 @@
   
         <a class="px-3 hover:text-[#E60001]" href="./portfolio.html">PORTFOLIO</a>
         <a class="px-3 hover:text-[#E60001]" href="./contact.html">CONTACT</a>
+
+        <div id="account-desktop" class="flex items-center space-x-3"></div>
   
 
       </div>
@@ -298,22 +300,94 @@
     });
   </script>
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  <script>
+    // session helpers
+    function isLoggedIn() {
+      return !!localStorage.getItem("gt_access_token");
+    }
+
+    function getUserEmail() {
+      return localStorage.getItem("gt_email");
+    }
+
+    function logout() {
+      localStorage.removeItem("gt_user_id");
+      localStorage.removeItem("gt_access_token");
+      localStorage.removeItem("gt_email");
+      // Reload or redirect after logout
+      window.location.reload();
+    }
+
+    function renderAccountUI() {
+      const loggedIn = isLoggedIn();
+      const email = getUserEmail() || "User";
+
+      const desktopContainer = document.getElementById("account-desktop");
+      const mobileContainer = document.getElementById("account");
+
+      // for desktop nav
+      if (desktopContainer) {
+        if (loggedIn) {
+          desktopContainer.innerHTML = `
+            <span class="text-sm md:text-base">
+              Logged in as <span class="font-semibold">${email}</span>
+            </span>
+            <button id="logout-desktop" class="px-3 hover:text-[#E60001] text-sm md:text-base">
+              Logout
+            </button>
+          `;
+        } else {
+          desktopContainer.innerHTML = `
+            <a href="/login.html" class="px-3 hover:text-[#E60001] text-sm md:text-base">
+              Login
+            </a>
+            <a href="/signup.html" class="px-3 hover:text-[#E60001] text-sm md:text-base">
+              Signup
+            </a>
+          `;
+        }
+      }
+
+      // Mobile account dropdown
+      if (mobileContainer) {
+        if (loggedIn) {
+          mobileContainer.innerHTML = `
+            <span class="py-1">Logged in as <span class="font-semibold">${email}</span></span>
+            <button id="logout-mobile" class="py-1 text-left hover:text-[#E60001]">
+              Logout
+            </button>
+          `;
+        } else {
+          mobileContainer.innerHTML = `
+            <a class="py-1 hover:text-[#E60001]" href="/login.html">Login</a>
+            <br>
+            <a class="py-1 hover:text-[#E60001]" href="/signup.html">Signup</a>
+          `;
+        }
+      }
+
+      // Hook-up logout buttons if present
+      const logoutDesktop = document.getElementById("logout-desktop");
+      const logoutMobile = document.getElementById("logout-mobile");
+
+      if (logoutDesktop) {
+        logoutDesktop.addEventListener("click", (e) => {
+          e.preventDefault();
+          logout();
+        });
+      }
+      if (logoutMobile) {
+        logoutMobile.addEventListener("click", (e) => {
+          e.preventDefault();
+          logout();
+        });
+      }
+    }
+
+    // Run after DOM is ready
+    document.addEventListener("DOMContentLoaded", renderAccountUI);
+  </script>
+
   
 </body>
 </html>
