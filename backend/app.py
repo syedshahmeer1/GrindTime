@@ -2,9 +2,17 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr
 import sqlite3
+from contextlib import asynccontextmanager
 
+from database import init_db
 from databaseauth import create_user, verify_user
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Initialize the database at startup (safe & persistent)
+    init_db()
+    yield
+    
 
 app = FastAPI(
     title="GrindTime API",
