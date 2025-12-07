@@ -1,5 +1,5 @@
 import sqlite3
-from passlib.hash import bcrypt
+from passlib.hash import pbkdf2_sha256
 from database import get_connection
 
 def get_user_by_email(email: str):
@@ -17,8 +17,8 @@ def create_user(email: str, password: str) -> int:
     Raises sqlite3.IntegrityError if email already exists.
     """
     email_norm = email.strip().lower()
-    pw_hash = bcrypt.hash(password)
-
+    pw_hash = pbkdf2_sha256.hash(password)
+    
     with get_connection() as conn:
         cur = conn.execute(
             "INSERT INTO users (email, password_hash) VALUES (?, ?)",
@@ -29,16 +29,14 @@ def create_user(email: str, password: str) -> int:
 
 
 def verify_user(email: str, password: str):
-    """
-    Returns the user row if the email/password are correct, otherwise None.
-    """
-    conn = get_connection()
-    row = conn.execute("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
-    if not row:
+    with get_connection() as conn:
+        row = conn.execute(
+            "SELECT * FROM users WHERE email = ?", (email.strip().lower(),)
+        ).fetchone()
+        if not row:
+            return None
+
+        if pbkdf2_sha256.verify(password, row["password_hash"]):
+            return row
+
         return None
-
-    if bcrypt.verify(password, row["password_hash"]):
-        return row
-
-    return None
-

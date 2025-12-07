@@ -1,7 +1,7 @@
 fastapi
 uvicorn[standard]
-passlib[bcrypt]
-bcrypt
 pydantic
 email-validator
+passlib
+python-multipart
 python-jose[cryptography]
