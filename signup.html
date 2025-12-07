@@ -175,37 +175,92 @@
             Create Account
           </button>
         </div>
+
+        <div class="flex justify-center mt-4">
+          <p id="signupMessage" class="text-sm"></p>
+        </div>
+
       </form>
     </section>
-    <script>
-    // client-side validation (also validate on server)
-    document.getElementById('signupForm').addEventListener('submit', function (e) {
-      const em = document.getElementById('email').value;
-      const p = document.getElementById('password').value;
-      const c = document.getElementById('confirm-password').value;
-      const err = document.getElementById('error');
-      err.classList.add('hidden'); err.textContent = '';
+  <script>
+    // --- API base URL (dev vs production) ---
+    const API_BASE =
+      window.location.hostname === "localhost"
+        ? "http://127.0.0.1:8000"                 // when testing locally with uvicorn
+        : "https://YOUR-RENDER-APP.onrender.com"; // <-- replace with your actual Render URL
 
-      if (!em) {
+    async function signupRequest(email, password) {
+      const res = await fetch(`${API_BASE}/api/signup`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+      return { status: res.status, data };
+    }
+
+    // form handler
+    const signupForm = document.getElementById('signupForm');
+    const signupMessage = document.getElementById('signupMessage');
+
+    if (signupForm) {
+      signupForm.addEventListener('submit', async function (e) {
         e.preventDefault();
-        err.textContent = "Please enter a valid email.";
-        err.classList.remove('hidden');
-        return;
-      }
-      if (!p) {
-        e.preventDefault();
-        err.textContent = "Please enter a password.";
-        err.classList.remove('hidden');
-        return;
-      }
-      if (p !== c) {
-        e.preventDefault();
-        err.textContent = "Passwords don't match.";
-        err.classList.remove('hidden');
-        return;
-      }
-      // allow submit; server must set password securely
-    });
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+
+        // reset message
+        signupMessage.textContent = "";
+        signupMessage.classList.remove("text-red-400", "text-green-400");
+
+        // basic client-side validation
+        if (!email) {
+          signupMessage.textContent = "Please enter a valid email.";
+          signupMessage.classList.add("text-red-400");
+          return;
+        }
+
+        if (!password) {
+          signupMessage.textContent = "Please enter a password.";
+          signupMessage.classList.add("text-red-400");
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          signupMessage.textContent = "Passwords don't match.";
+          signupMessage.classList.add("text-red-400");
+          return;
+        }
+
+        // call backend
+        signupMessage.textContent = "Creating account...";
+        signupMessage.classList.add("text-white");
+
+        try {
+          const { status, data } = await signupRequest(email, password);
+
+          if (status === 201) {
+            signupMessage.textContent = "Account created! You can log in now.";
+            signupMessage.classList.remove("text-white");
+            signupMessage.classList.add("text-green-400");
+          } else {
+            const message = data.detail || "Signup failed. Please try again.";
+            signupMessage.textContent = message;
+            signupMessage.classList.remove("text-white");
+            signupMessage.classList.add("text-red-400");
+          }
+        } catch (err) {
+          console.error(err);
+          signupMessage.textContent = "Network error. Please try again.";
+          signupMessage.classList.remove("text-white");
+          signupMessage.classList.add("text-red-400");
+        }
+      });
+    }
   </script>
+
 </body>
 </html>

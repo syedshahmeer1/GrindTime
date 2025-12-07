@@ -3,3 +3,4 @@ uvicorn[standard]
 passlib[bcrypt]
 bcrypt
 pydantic
+email-validator

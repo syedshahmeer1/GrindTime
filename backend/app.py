@@ -18,6 +18,7 @@ app = FastAPI(
     title="GrindTime API",
     description="Backend API for workout & nutrition app",
     version="1.0.0",
+    lifespan=lifespan,
 )
 
 ORIGINS_DEV = [
