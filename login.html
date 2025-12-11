@@ -152,11 +152,16 @@
             <form id="loginForm" action="/login" method="POST"
                 class="bg-black/95 p-6 rounded shadow-md">
                 <div class="mb-4">
-                    <label for="username"
-                        class="block text-sm font-medium">Username</label>
-                    <input type="text" id="username" name="username" required
-                        class="mt-1 block w-full p-2 text-black border border-gray-300 rounded" />
-                </div>
+                  <label for="email" class="block text-sm font-medium">Email</label>
+                  <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      class="mt-1 block w-full p-2 text-black border border-gray-300 rounded"
+                  />
+              </div>
+              
                 <div class="mb-4">
                     <label for="password"
                         class="block text-sm font-medium">Password</label>
@@ -179,27 +184,40 @@
                 </div>
             </form>
         </section>
+        
         <script>
-        document.getElementById('loginForm').addEventListener('submit', function (e) {
-      const em = document.getElementById('email').value;
-      const p = document.getElementById('password').value;
-      const err = document.getElementById('error');
-      err.classList.add('hidden'); err.textContent = '';
-
-      if (!em) {
-        e.preventDefault();
-        err.textContent = "Please enter a valid email.";
-        err.classList.remove('hidden');
-        return;
-      }
-      if (!p) {
-        e.preventDefault();
-        err.textContent = "Please enter a password.";
-        err.classList.remove('hidden');
-        return;
-      }
-      // Server-side will also validate credentials
-    });
-        </script>
+          document.getElementById("loginForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+          
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+          
+            if (!email || !password) {
+              alert("Please fill out both email and password.");
+              return;
+            }
+          
+            try {
+              const res = await fetch("http://127.0.0.1:5000/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password }),
+              });
+          
+              const data = await res.json();
+          
+              if (res.ok && data.success) {
+                alert("Login successful!");
+                window.location.href = "index.html";
+              } else {
+                alert(data.message || "Invalid email or password.");
+              }
+            } catch (err) {
+              console.error(err);
+              alert("Error connecting to server.");
+            }
+          });
+          </script>
+          
     </body>
 </html>
