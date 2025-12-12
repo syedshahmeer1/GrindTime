@@ -11,6 +11,21 @@
 </head>
 
 <body class="text-white bg-white">
+  <!-- Load shared header -->
+  <script>
+    (function(){
+      fetch('header.html').then(r => r.text()).then(html => {
+        const frag = document.createRange().createContextualFragment(html);
+        const existing = document.querySelector('body > header');
+        if (existing) existing.replaceWith(frag);
+        else document.body.insertBefore(frag, document.body.firstChild);
+        const mainBtn = document.getElementById('main-btn');
+        if (mainBtn) mainBtn.onclick = () => document.getElementById('main-menu').classList.toggle('hidden');
+        document.querySelectorAll('[data-target]').forEach(btn => { btn.onclick = () => { const target = document.getElementById(btn.dataset.target); if (target) target.classList.toggle('hidden'); }; });
+        if (typeof renderAccountUI === 'function') renderAccountUI();
+      });
+    })();
+  </script>
 
   <header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
     <nav class="container mx-auto flex items-center justify-between">
@@ -25,7 +40,7 @@
   
       
       <div class="hidden md:flex items-center space-x-6 font-roboto font-semibold">
-        <a class="px-3 hover:text-[#E60001]" href="#caloriecalc">CALORIE CALCULATOR</a>
+        <a class="px-3 hover:text-[#E60001]" href="/caloriecalc.html">CALORIE CALCULATOR</a>
   
         
         <div class="relative group">
@@ -63,7 +78,7 @@
   
   
     <div id="main-menu" class="hidden flex-col md:hidden px-4 pb-4">
-      <a class="py-2 hover:text-[#E60001]" href="#caloriecalc">CALORIE CALCULATOR</a>
+      <a class="py-2 hover:text-[#E60001]" href="/caloriecalc.html">CALORIE CALCULATOR</a>
   
       
       <button data-target="splits" class="flex items-center py-2 hover:text-[#E60001]">
@@ -175,6 +190,11 @@
           <p id="signupMessage" class="text-sm"></p>
         </div>
 
+        <div class="mt-4 text-sm">
+              Already have an account?
+              <a href="login.html" class="text-[#E60001] hover:underline">Log in</a>
+            </div>
+
       </form>
     </section>
   <script>
@@ -241,6 +261,10 @@
             signupMessage.textContent = "Account created! You can log in now.";
             signupMessage.classList.remove("text-white");
             signupMessage.classList.add("text-green-400");
+            // redirect to login after a short delay
+                  setTimeout(() => {
+                    window.location.href = "login.html";
+                  }, 1500);
           } else {
             const message = data.detail || "Signup failed. Please try again.";
             signupMessage.textContent = message;

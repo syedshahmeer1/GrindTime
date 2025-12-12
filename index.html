@@ -11,6 +11,21 @@
 </head>
 
 <body class="text-white bg-[#E60001]">
+  <!-- Load shared header -->
+  <script>
+    (function(){
+      fetch('header.html').then(r => r.text()).then(html => {
+        const frag = document.createRange().createContextualFragment(html);
+        const existing = document.querySelector('body > header');
+        if (existing) existing.replaceWith(frag);
+        else document.body.insertBefore(frag, document.body.firstChild);
+        const mainBtn = document.getElementById('main-btn');
+        if (mainBtn) mainBtn.onclick = () => document.getElementById('main-menu').classList.toggle('hidden');
+        document.querySelectorAll('[data-target]').forEach(btn => { btn.onclick = () => { const target = document.getElementById(btn.dataset.target); if (target) target.classList.toggle('hidden'); }; });
+        if (typeof renderAccountUI === 'function') renderAccountUI();
+      });
+    })();
+  </script>
 
   <header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
     <nav class="container mx-auto flex items-center justify-between">
@@ -132,9 +147,9 @@
         ELEVATE YOUR <span class="text-[#E60001]">FITNESS</span> JOURNEY
       </h1>
   
-      <button id="openForm" class="bg-[#E60001] hover:bg-[#c40001] text-white text-lg md:text-xl px-8 py-4 rounded-xl shadow-lg">
+      <a href="caloriecalc.html" class="bg-[#E60001] hover:bg-[#c40001] text-white text-lg md:text-xl px-8 py-4 rounded-xl shadow-lg">
         Calculate My Calories
-      </button>
+      </a>
 
       <a
         href="https://grindtime1.netlify.app/newusda.html"
@@ -151,86 +166,6 @@
       </a> 
     </div>
   </div>
-  
-
-  <div id="calorieModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-30">
-    <div class="bg-white w-11/12 max-w-md md:max-w-lg rounded-2xl p-6 md:p-8 max-h-[90vh] overflow-y-auto relative">
-     
-      <button id="closeForm" class="absolute top-3 right-3 text-2xl text-gray-500 hover:text-gray-700">&times;</button>
-  
-      <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center text-[#E60001]">Calorie Calculator</h2>
-  
-    
-      <form id="calorieForm" class="space-y-6">
-      
-        <div class="flex gap-3">
-          <div class="flex-1">
-            <label for="heightFeet" class="block font-medium mb-1 text-black">Height (ft)</label>
-            <input id="heightFeet" type="number" step="1" placeholder="5" class="w-full border border-gray-400 rounded-lg p-2 text-black focus:ring-[#E60001]/50" />
-          </div>
-          <div class="flex-1">
-            <label for="heightInch" class="block font-medium mb-1 text-black">Height (in)</label>
-            <input id="heightInch" type="number" step="1" placeholder="10" class="w-full border border-gray-400 rounded-lg p-2 text-black focus:ring-[#E60001]/50" />
-          </div>
-        </div>
-  
-      
-        <div>
-          <label for="weightInput" class="block font-medium mb-1 text-black">Weight (kg)</label>
-          <input id="weightInput" type="number" step="0.1" placeholder="70.5" class="w-full border border-gray-400 rounded-lg p-2 text-black focus:ring-[#E60001]/50" />
-        </div>
-  
- 
-        <div>
-          <label for="ageInput" class="block font-medium mb-1 text-black">Age (yrs)</label>
-          <input id="ageInput" type="number" step="1" placeholder="25" class="w-full border border-gray-400 rounded-lg p-2 text-black focus:ring-[#E60001]/50" />
-        </div>
-  
-        <div>
-          <label for="genderSelect" class="block font-medium mb-1 text-black">Gender</label>
-          <select id="genderSelect" class="w-full border border-gray-400 rounded-lg p-2 text-black focus:ring-[#E60001]/50">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-        </div>
-  
-        
-        <div>
-          <label for="activitySelect" class="block font-medium mb-1 text-black">Activity Level</label>
-          <select id="activitySelect" class="w-full border border-gray-400 rounded-lg p-2 text-black focus:ring-[#E60001]/50">
-            <option value="1.2">Sedentary</option>
-            <option value="1.375">Lightly Active</option>
-            <option value="1.55">Moderately Active</option>
-            <option value="1.725">Very Active</option>
-            <option value="1.9">Extra Active</option>
-          </select>
-        </div>
-  
-        <!-- Experience -->
-        <div>
-          <label for="experienceSelect" class="block font-medium mb-1 text-black">Training Experience</label>
-          <select id="experienceSelect" class="w-full border border-gray-400 rounded-lg p-2 text-black focus:ring-[#E60001]/50">
-            <option value="beginner">&lt; 1.5 yrs (Beginner)</option>
-            <option value="advanced">≥ 1.5 yrs (Experienced)</option>
-          </select>
-        </div>
-  
-        <!-- ===== FAQ (read before submit) ===== -->
-        <div class="text-black">
-          <h3 class="text-lg font-bold mb-2 text-[#E60001] text-center">Activity Level FAQ</h3>
-          <details class="mb-2"><summary class="font-medium cursor-pointer">Sedentary</summary><p class="mt-1 text-sm text-gray-700">No workouts; fewer than 3&nbsp;000 steps per day.</p></details>
-          <details class="mb-2"><summary class="font-medium cursor-pointer">Lightly Active</summary><p class="mt-1 text-sm text-gray-700">Strength-train 3–4&nbsp;days/week &amp; 3–5 k steps daily.</p></details>
-          <details class="mb-2"><summary class="font-medium cursor-pointer">Moderately Active</summary><p class="mt-1 text-sm text-gray-700">Strength-train 4–5&nbsp;days/week &amp; 7–9 k steps daily.</p></details>
-          <details class="mb-2"><summary class="font-medium cursor-pointer">Very Active</summary><p class="mt-1 text-sm text-gray-700">Strength-train 5–6&nbsp;days/week &amp; 10–13 k steps daily.</p></details>
-          <details><summary class="font-medium cursor-pointer">Extra Active</summary><p class="mt-1 text-sm text-gray-700">Strength-train 6&nbsp;days/week &amp; 15–20 k steps daily.</p></details>
-        </div>
-  
-        <!-- Calculate -->
-        <button type="submit" class="w-full bg-[#E60001] hover:bg-[#c40001] text-white py-3 rounded-xl font-semibold">Calculate</button>
-      </form>
-  
-      <!-- ===== RESULTS ===== -->
-      <div id="resultBox" class="mt-8 hidden">
         <h3 class="text-xl md:text-2xl font-bold mb-4 text-center text-[#E60001]">Your Calories</h3>
         <ul id="resultsList" class="space-y-1 text-gray-800 text-center"></ul>
       </div>
@@ -257,136 +192,9 @@
       };
     });
   </script>
-<script>
-    // Modal toggle
-    const modal = document.getElementById("calorieModal");
-    document.getElementById("openForm").onclick = () => modal.classList.remove("hidden");
-    document.getElementById("closeForm").onclick = () => modal.classList.add("hidden");
-    modal.onclick = (e) => { if (e.target === modal) modal.classList.add("hidden"); };
+<!-- modal and inline calculator removed (use caloriecalc.html) -->
   
-    // Calculation
-    document.getElementById("calorieForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-      const ft   = +document.getElementById("heightFeet").value || 0;
-      const inch = +document.getElementById("heightInch").value || 0;
-      const cm   = (ft * 12 + inch) * 2.54;
-      const kg   = +document.getElementById("weightInput").value || 0;
-      const age  = +document.getElementById("ageInput").value    || 0;
-  
-      const gender    = document.getElementById("genderSelect").value;
-      const activity  = +document.getElementById("activitySelect").value;
-      const experience= document.getElementById("experienceSelect").value;
-  
-      // BMR formula depending on gender
-      const bmr = gender === "male"
-        ? 10 * kg + 6.25 * cm - 5 * age + 5
-        : 10 * kg + 6.25 * cm - 5 * age - 161;
-  
-      const maintenance = Math.round(bmr * activity);
-      const bulk        = experience === "beginner" ? maintenance + 500 : maintenance + 200;
-      const normalCut   = maintenance - 500;
-      const aggressiveCut = maintenance - 1000;
-      const protein=Math.ceil(kg*2.2);
-      const protlower=Math.ceil(protein*(75/100));
-  
-      document.getElementById("resultsList").innerHTML = `
-        <li><strong>Maintenance:</strong> ${maintenance} kcal</li>
-        <li><strong>Bulk:</strong> ${bulk} kcal</li>
-        <li><strong>Normal Cut (-500):</strong> ${normalCut} kcal</li>
-        <li><strong>Aggressive Cut (-1000):</strong> ${aggressiveCut} kcal</li>
-        <li><strong>Protein Goals:</strong> ${protlower}-${protein} grams</li>
-      `;
-      document.getElementById("resultBox").classList.remove("hidden");
-    });
-  </script>
-  
-  <script>
-    // session helpers
-    function isLoggedIn() {
-      return !!localStorage.getItem("gt_access_token");
-    }
 
-    function getUserEmail() {
-      return localStorage.getItem("gt_email");
-    }
-
-    function logout() {
-      localStorage.removeItem("gt_user_id");
-      localStorage.removeItem("gt_access_token");
-      localStorage.removeItem("gt_email");
-      // Reload or redirect after logout
-      window.location.reload();
-    }
-
-    function renderAccountUI() {
-      const loggedIn = isLoggedIn();
-      const email = getUserEmail() || "User";
-
-      const desktopContainer = document.getElementById("account-desktop");
-      const mobileContainer = document.getElementById("account");
-
-      // for desktop nav
-      if (desktopContainer) {
-        if (loggedIn) {
-          desktopContainer.innerHTML = `
-            <span class="text-sm md:text-base">
-              Logged in as <span class="font-semibold">${email}</span>
-            </span>
-            <button id="logout-desktop" class="px-3 hover:text-[#E60001] text-sm md:text-base">
-              Logout
-            </button>
-          `;
-        } else {
-          desktopContainer.innerHTML = `
-            <a href="/login.html" class="px-3 hover:text-[#E60001] text-sm md:text-base">
-              Login
-            </a>
-            <a href="/signup.html" class="px-3 hover:text-[#E60001] text-sm md:text-base">
-              Signup
-            </a>
-          `;
-        }
-      }
-
-      // Mobile account dropdown
-      if (mobileContainer) {
-        if (loggedIn) {
-          mobileContainer.innerHTML = `
-            <span class="py-1">Logged in as <span class="font-semibold">${email}</span></span>
-            <button id="logout-mobile" class="py-1 text-left hover:text-[#E60001]">
-              Logout
-            </button>
-          `;
-        } else {
-          mobileContainer.innerHTML = `
-            <a class="py-1 hover:text-[#E60001]" href="/login.html">Login</a>
-            <br>
-            <a class="py-1 hover:text-[#E60001]" href="/signup.html">Signup</a>
-          `;
-        }
-      }
-
-      // Hook-up logout buttons if present
-      const logoutDesktop = document.getElementById("logout-desktop");
-      const logoutMobile = document.getElementById("logout-mobile");
-
-      if (logoutDesktop) {
-        logoutDesktop.addEventListener("click", (e) => {
-          e.preventDefault();
-          logout();
-        });
-      }
-      if (logoutMobile) {
-        logoutMobile.addEventListener("click", (e) => {
-          e.preventDefault();
-          logout();
-        });
-      }
-    }
-
-    // Run after DOM is ready
-    document.addEventListener("DOMContentLoaded", renderAccountUI);
-  </script>
 
   
 </body>

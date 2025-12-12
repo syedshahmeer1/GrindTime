@@ -9,6 +9,22 @@
 </head>
 <body class="font-sans bg-white text-white">
 
+  <!-- Load shared header -->
+  <script>
+    (function(){
+      fetch('header.html').then(r => r.text()).then(html => {
+        const frag = document.createRange().createContextualFragment(html);
+        const existing = document.querySelector('body > header');
+        if (existing) existing.replaceWith(frag);
+        else document.body.insertBefore(frag, document.body.firstChild);
+        const mainBtn = document.getElementById('main-btn');
+        if (mainBtn) mainBtn.onclick = () => document.getElementById('main-menu').classList.toggle('hidden');
+        document.querySelectorAll('[data-target]').forEach(btn => { btn.onclick = () => { const target = document.getElementById(btn.dataset.target); if (target) target.classList.toggle('hidden'); }; });
+        if (typeof renderAccountUI === 'function') renderAccountUI();
+      });
+    })();
+  </script>
+
   
   <header class="sticky top-0 z-20 bg-black shadow-md py-2 px-4">
     <nav class="container mx-auto flex items-center justify-between">
