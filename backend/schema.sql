@@ -107,3 +107,31 @@ CREATE TABLE IF NOT EXISTS macro_targets
     fat_g         INTEGER NOT NULL CHECK (fat_g >= 0),
     UNIQUE (user_id, effective_from)
 );
+
+-- Calorie calculator saved results (latest can be shown on profile)
+CREATE TABLE IF NOT EXISTS calorie_calc_results
+(
+    id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id             INTEGER NOT NULL
+                        REFERENCES users(id) ON DELETE CASCADE,
+    created_at          TEXT NOT NULL DEFAULT (datetime('now')),
+
+    height_ft           INTEGER CHECK (height_ft IS NULL OR height_ft >= 0),
+    height_in           INTEGER CHECK (height_in IS NULL OR (height_in >= 0 AND height_in < 12)),
+    weight_kg           REAL    CHECK (weight_kg IS NULL OR weight_kg >= 0),
+    age_years           INTEGER CHECK (age_years IS NULL OR age_years >= 0),
+    sex                 TEXT    CHECK (sex IN ('male','female','other')),
+    activity_factor     REAL    CHECK (activity_factor IS NULL OR activity_factor >= 0),
+    experience_level    TEXT,
+
+    bmr_kcal            INTEGER CHECK (bmr_kcal IS NULL OR bmr_kcal >= 0),
+    maintenance_kcal    INTEGER CHECK (maintenance_kcal IS NULL OR maintenance_kcal >= 0),
+    bulk_kcal           INTEGER CHECK (bulk_kcal IS NULL OR bulk_kcal >= 0),
+    cut_kcal            INTEGER CHECK (cut_kcal IS NULL OR cut_kcal >= 0),
+    aggressive_cut_kcal INTEGER CHECK (aggressive_cut_kcal IS NULL OR aggressive_cut_kcal >= 0),
+    protein_low_g       INTEGER CHECK (protein_low_g IS NULL OR protein_low_g >= 0),
+    protein_high_g      INTEGER CHECK (protein_high_g IS NULL OR protein_high_g >= 0)
+);
+
+CREATE INDEX IF NOT EXISTS idx_calorie_calc_results_user_created
+ON calorie_calc_results (user_id, created_at DESC);

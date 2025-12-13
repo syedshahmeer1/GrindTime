@@ -406,6 +406,8 @@
             ? 10 * kg + 6.25 * cm - 5 * age + 5
             : 10 * kg + 6.25 * cm - 5 * age - 161;
 
+        const bmrRounded = Math.round(bmr);
+
         const maintenance = Math.round(bmr * activity);
         const bulk =
           experience === "beginner" ? maintenance + 500 : maintenance + 200;
@@ -422,6 +424,60 @@
         <li><strong>Protein Goals:</strong> ${protlower}-${protein} grams</li>
       `;
         document.getElementById("resultBox").classList.remove("hidden");
+
+        // If user opted in, save results to DB for the logged-in user
+        const saveChecked = document.getElementById("saveResultsCheckbox")?.checked;
+        if (saveChecked) {
+          const token = localStorage.getItem("gt_access_token");
+          if (!token) {
+            alert("Please log in to save your results.");
+            return;
+          }
+
+          const API_BASE =
+            window.location.hostname === "localhost"
+              ? "http://127.0.0.1:8000"
+              : "https://grindtime.onrender.com";
+
+          const payload = {
+            height_ft: ft,
+            height_in: inch,
+            weight_kg: kg,
+            age_years: age,
+            sex: gender,
+            activity_factor: activity,
+            experience_level: experience,
+
+            bmr_kcal: bmrRounded,
+            maintenance_kcal: maintenance,
+            bulk_kcal: bulk,
+            cut_kcal: normalCut,
+            aggressive_cut_kcal: aggressiveCut,
+            protein_low_g: protlower,
+            protein_high_g: protein,
+          };
+
+          // Fire-and-forget save (no page reload)
+          fetch(`${API_BASE}/api/caloriecalc/save`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(payload),
+          })
+            .then(async (res) => {
+              if (!res.ok) {
+                const data = await res.json().catch(() => ({}));
+                console.error("Save failed", res.status, data);
+                alert(data.detail || "Could not save results.");
+              }
+            })
+            .catch((err) => {
+              console.error(err);
+              alert("Network error while saving results.");
+            });
+        }
       }
 
       // click handler for the Calculate button

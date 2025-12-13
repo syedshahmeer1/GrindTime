@@ -1,29 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>User Profile - GrindTime</title>
-        <link rel="icon" href="logo.jpg" type="image/png" />
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    <!-- Profile page in the style of the other pages -->
-    <body class="font-sans bg-white text-white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>User Profile - GrindTime</title>
+    <link rel="icon" href="logo.jpg" type="image/png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
 
-        <!-- Load shared header -->
-        <script>
-            (function(){
-                fetch('header.html').then(r => r.text()).then(html => {
-                    const frag = document.createRange().createContextualFragment(html);
-                    const existing = document.querySelector('body > header');
-                    if (existing) existing.replaceWith(frag);
-                    else document.body.insertBefore(frag, document.body.firstChild);
-                    const mainBtn = document.getElementById('main-btn');
-                    if (mainBtn) mainBtn.onclick = () => document.getElementById('main-menu').classList.toggle('hidden');
-                    document.querySelectorAll('[data-target]').forEach(btn => { btn.onclick = () => { const target = document.getElementById(btn.dataset.target); if (target) target.classList.toggle('hidden'); }; });
-                    if (typeof renderAccountUI === 'function') renderAccountUI();
-                });
-            })();
-        </script>
-    <!-- Add saved stats from calorie calculator -->
+  <body class="font-sans bg-white text-white">
+    <!-- Load shared header -->
+    <script>
+      (function () {
+        fetch("header.html")
+          .then((r) => r.text())
+          .then((html) => {
+            const frag = document.createRange().createContextualFragment(html);
+            const existing = document.querySelector("body > header");
+            if (existing) existing.replaceWith(frag);
+            else document.body.insertBefore(frag, document.body.firstChild);
+            const mainBtn = document.getElementById("main-btn");
+            if (mainBtn)
+              mainBtn.onclick = () =>
+                document.getElementById("main-menu").classList.toggle("hidden");
+            document.querySelectorAll("[data-target]").forEach((btn) => {
+              btn.onclick = () => {
+                const target = document.getElementById(btn.dataset.target);
+                if (target) target.classList.toggle("hidden");
+              };
+            });
+            if (typeof renderAccountUI === "function") renderAccountUI();
+          });
+      })();
+    </script>
+
+    <!-- Banner -->
+    <section class="bg-[#E60001] py-12 sm:py-16 px-4 sm:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl sm:text-5xl font-bold text-white">PROFILE</h1>
+        <p class="mt-2 text-white/90">Your saved calorie calculator statistics</p>
+      </div>
+    </section>
+
+    <main class="container mx-auto mt-10 px-4">
+      <div class="max-w-3xl mx-auto">
+        <div
+          class="rounded-2xl border border-gray-200 bg-white shadow-sm p-6"
+        >
+          <h2 class="text-xl font-bold text-black">Latest Saved Results</h2>
+          <p id="status" class="mt-2 text-sm text-gray-700"></p>
+
+          <div id="results" class="mt-4 hidden">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="rounded-xl border border-gray-200 p-4">
+                <div class="text-sm text-gray-600">Saved On</div>
+                <div id="savedAt" class="text-black font-semibold"></div>
+              </div>
+              <div class="rounded-xl border border-gray-200 p-4">
+                <div class="text-sm text-gray-600">Inputs</div>
+                <div id="inputs" class="text-black font-semibold"></div>
+              </div>
+            </div>
+
+            <div class="mt-4 rounded-xl border border-gray-200 p-4">
+              <div class="text-sm text-gray-600">Calories & Protein</div>
+              <ul id="stats" class="mt-2 space-y-1 text-black"></ul>
+            </div>
+
+            <div class="mt-4 text-sm text-gray-600">
+              Want to update these? Re-run the calculator and check “Save Results”.
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="h-16"></div>
+
+    <script>
+      const API_BASE =
+        window.location.hostname === "localhost"
+          ? "http://127.0.0.1:8000"
+          : "https://grindtime.onrender.com";
+
+      function formatSavedAt(s) {
+        // created_at comes from SQLite datetime('now') (UTC-ish). Keep simple & readable.
+        try {
+          const d = new Date(s.replace(" ", "T") + "Z");
+          return d.toLocaleString();
+        } catch {
+          return s;
+        }
+      }
+
+      async function loadProfile() {
+        const statusEl = document.getElementById("status");
+        const resultsEl = document.getElementById("results");
+        const token = localStorage.getItem("gt_access_token");
+
+        if (!token) {
+          statusEl.textContent = "You are not logged in. Please log in to view your saved results.";
+          statusEl.className = "mt-2 text-sm text-red-600";
+          return;
+        }
+
+        statusEl.textContent = "Loading...";
+        statusEl.className = "mt-2 text-sm text-gray-700";
+
+        try {
+          const res = await fetch(`${API_BASE}/api/profile/caloriecalc`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+
+          if (!res.ok) {
+            const data = await res.json().catch(() => ({}));
+            statusEl.textContent = data.detail || "Could not load profile data.";
+            statusEl.className = "mt-2 text-sm text-red-600";
+            return;
+          }
+
+          const data = await res.json();
+          if (!data) {
+            statusEl.textContent = "No saved calorie calculator results yet.";
+            statusEl.className = "mt-2 text-sm text-gray-700";
+            return;
+          }
+
+          // Render
+          document.getElementById("savedAt").textContent = formatSavedAt(data.created_at);
+          document.getElementById("inputs").textContent =
+            `${data.height_ft || 0}'${data.height_in || 0}\" • ${data.weight_kg || 0} kg • ` +
+            `${data.age_years || 0} yrs • ${data.sex || ""} • AF ${data.activity_factor || ""} • ${data.experience_level || ""}`;
+
+          const stats = document.getElementById("stats");
+          stats.innerHTML = `
+            <li><strong>BMR:</strong> ${data.bmr_kcal ?? "—"} kcal</li>
+            <li><strong>Maintenance:</strong> ${data.maintenance_kcal ?? "—"} kcal</li>
+            <li><strong>Bulk:</strong> ${data.bulk_kcal ?? "—"} kcal</li>
+            <li><strong>Normal Cut (-500):</strong> ${data.cut_kcal ?? "—"} kcal</li>
+            <li><strong>Aggressive Cut (-1000):</strong> ${data.aggressive_cut_kcal ?? "—"} kcal</li>
+            <li><strong>Protein Goals:</strong> ${data.protein_low_g ?? "—"}-${data.protein_high_g ?? "—"} g</li>
+          `;
+
+          resultsEl.classList.remove("hidden");
+          statusEl.textContent = "";
+        } catch (err) {
+          console.error(err);
+          statusEl.textContent = "Network error while loading profile data.";
+          statusEl.className = "mt-2 text-sm text-red-600";
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", loadProfile);
+    </script>
+  </body>
 </html>
